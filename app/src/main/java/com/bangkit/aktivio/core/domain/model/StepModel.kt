@@ -4,6 +4,7 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class SurveyModel(
-    val motivation: String,
-) : Parcelable
+data class StepModel (
+    val stepNum: Int?,
+    val instruction: String?,
+): Parcelable

@@ -4,23 +4,23 @@ import com.google.gson.annotations.SerializedName
 
 data class CommunityItem(
     @field:SerializedName("communitiesId")
-    val communitiesId: String,
+    val communitiesId: String? = null,
 
     @field:SerializedName("name")
-    val name: String,
+    val name: String? = null,
 
     @field:SerializedName("description")
-    val description: String,
+    val description: String? = null,
 
     @field:SerializedName("creator")
-    val creator: String,
+    val creator: String? = null,
 
     @field:SerializedName("members")
-    val members: String,
+    val members: String? = null,
 
     @field:SerializedName("posts")
-    val posts: String,
+    val posts: String? = null,
 
     @field:SerializedName("events")
-    val events: String
+    val events: String? = null
 )
