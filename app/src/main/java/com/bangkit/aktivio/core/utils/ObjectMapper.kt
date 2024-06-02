@@ -18,3 +18,14 @@ inline fun <reified I : Any, reified O : Any> I.mapTo(): O {
 
     return primaryConstructor.callBy(args)
 }
+
+inline fun <reified T : Any> Map<String, Any?>.toDataClass(): T {
+    val constructor = T::class.primaryConstructor
+        ?: throw IllegalArgumentException("No primary constructor found for ${T::class}")
+
+    val args = constructor.parameters.associateWith { param ->
+        this[param.name]
+    }
+
+    return constructor.callBy(args)
+}

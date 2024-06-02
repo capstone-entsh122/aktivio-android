@@ -1,4 +1,4 @@
-package com.bangkit.aktivio.core.domain.`interface`
+package com.bangkit.aktivio.core.domain.interfaces
 
 import com.bangkit.aktivio.core.data.Resource
 import kotlinx.coroutines.flow.Flow
