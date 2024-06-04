@@ -16,6 +16,7 @@ import javax.inject.Singleton
 class UserRepository @Inject constructor(private val apiService: ApiService) : IUserRepository {
     override suspend fun signUp(userItem: UserItem): Flow<Resource<String>> {
         return BaseRequest.call(apiService::signUp, userItem)
+
     }
 
     override suspend fun signIn(userItem: UserItem): Flow<Resource<UserModel>> {
