@@ -1,3 +1,19 @@
 <resources>
     <string name="app_name">Aktivio</string>
+    <string name="onboarding_title">Revolutionize\nYour Exercise</string>
+    <string name="onboarding_desc">It’s time to make a <b>healthier you</b> with a <b>personalized plan</b> based on your <b>preferences</b>.</string>
+    <string name="get_started">Get Started</string>
+    <string name="btn_login">Login</string>
+    <string name="btn_register">Register</string>
+    <string name="login_desc">Welcome back fellas! Let’s go back to the <b>healthier way</b> of you shall we?</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="dont_have_account">Don\'t have an account?</string>
+    <string name="redirect_register">Don\'t have an account? <b>Register here</b></string>
+    <string name="remember_me">Remember Me</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="register_desc">Hi! It’s a great you want to start. <b>Let’s get your healthiness back!</b></string>
+    <string name="username">Username</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login_redirect">Already have an account? <b>Login here</b></string>
 </resources>
