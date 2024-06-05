@@ -7,6 +7,7 @@ import com.bangkit.aktivio.core.domain.model.CommunityModel
 import com.bangkit.aktivio.core.domain.model.PlanModel
 import com.bangkit.aktivio.core.domain.model.UserModel
 import kotlinx.coroutines.flow.Flow
+import okhttp3.MultipartBody
 import java.io.File
 
 
@@ -25,7 +26,7 @@ interface IUserRepository {
 
     suspend fun updateProfile(userItem: UserItem): Flow<Resource<String>>
 
-    suspend fun uploadPhotoProfile(photo: File): Flow<Resource<UserModel>>
+    suspend fun uploadPhotoProfile(photo: MultipartBody.Part): Flow<Resource<UserModel>>
 
     suspend fun getPhotoProfile(): Flow<Resource<String>>
 
@@ -35,7 +36,6 @@ interface IUserRepository {
 
     suspend fun leaveCommunity(communityId: String): Flow<Resource<Map<String, Any?>>>
 
-
-
+    suspend fun deleteUser(): Flow<Resource<String>>
 
 }

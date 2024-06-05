@@ -1,13 +1,14 @@
 package com.bangkit.aktivio.core.domain.interfaces
 
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.data.remote.model.EventItem
 import com.bangkit.aktivio.core.domain.model.EventModel
 import kotlinx.coroutines.flow.Flow
 
 interface IEventRepository {
-    suspend fun createEvent(communityId: String, eventModel: EventModel): Flow<Resource<String>>
+    suspend fun createEvent(communityId: String, eventItem: EventItem): Flow<Resource<String>>
 
-    suspend fun updateEvent(communityId: String, eventModel: EventModel): Flow<Resource<String>>
+    suspend fun updateEvent(communityId: String, eventItem: EventItem): Flow<Resource<String>>
 
     suspend fun getEvent(communityId: String, eventId: String): Flow<Resource<EventModel>>
 
@@ -19,7 +20,7 @@ interface IEventRepository {
 
     suspend fun getDetailEvent(communityId: String, eventId: String): Flow<Resource<EventModel>>
 
-    suspend fun updateDetailEvent(communityId: String, eventId: String, eventModel: EventModel): Flow<Resource<String>>
+    suspend fun updateDetailEvent(communityId: String, eventId: String, eventItem: EventItem): Flow<Resource<String>>
 
 
 

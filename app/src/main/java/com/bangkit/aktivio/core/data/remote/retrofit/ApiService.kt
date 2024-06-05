@@ -149,8 +149,8 @@ interface ApiService {
     @POST("/sportplan")
     suspend fun createSportPlan(@Body planItem: PlanItem) : DefaultResponse
 
-    @DELETE("/sportplan/delete")
-    suspend fun deleteSportPlan() : DefaultResponse
+    @DELETE("/sportplan/delete/{planId}")
+    suspend fun deleteSportPlan(@Path("planId") planId: String) : DefaultResponse
 
 
 
