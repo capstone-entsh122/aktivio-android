@@ -65,4 +65,85 @@ object BaseRequest {
             }
         }
     }
+
+    suspend inline fun <reified Path : Any, reified Input: Any?, reified Output : Any?> modified(
+        crossinline apiCall: suspend (Path, Input) -> DefaultResponse,
+        pathId: Path,
+        inputItem: Input,
+        crossinline onBefore: (DefaultResponse) -> Unit? = {},
+        crossinline onSuccess: (Map<String, Any>?) -> Unit? = {},
+        crossinline onError: (String) -> Unit? = {}
+    ): Flow<Resource<Output>> {
+        return flow {
+            try {
+                // Perform the API call with the provided input item
+                val response = apiCall(pathId, inputItem)
+                // Execute the onBefore callback with the response
+                onBefore(response)
+                // Check if the response contains no error
+                if (response.error == null) {
+                    val data = response.data
+                    // Execute the onSuccess callback with the data
+                    onSuccess(data)
+                    if (data != null) {
+                        // Map the response data to the desired Output type and emit a Success Resource
+                        val result: Output = data.toDataClass()
+                        emit(Resource.Success(result))
+                    } else {
+                        // Emit a Success Resource with the response message if data is null
+                        emit(Resource.Success(response.message as Output))
+                    }
+                } else {
+                    // Emit an Error Resource with the response message if there is an error
+                    emit(Resource.Error(response.message ?: "Error"))
+                }
+            } catch (e: Exception) {
+                // Log the exception and execute the onError callback with the exception message
+                Log.e("BaseRequest", e.toString())
+                onError(e.message.toString())
+                emit(Resource.Error(e.message.toString()))
+            }
+        }
+    }
+
+    suspend inline fun <reified Path : Any, reified SecondPath: Any, reified Input: Any?, reified Output : Any?> changeAll(
+        crossinline apiCall: suspend (Path, SecondPath, Input) -> DefaultResponse,
+        pathId: Path,
+        secondPathId: SecondPath,
+        inputItem: Input,
+        crossinline onBefore: (DefaultResponse) -> Unit? = {},
+        crossinline onSuccess: (Map<String, Any>?) -> Unit? = {},
+        crossinline onError: (String) -> Unit? = {}
+    ): Flow<Resource<Output>> {
+        return flow {
+            try {
+                // Perform the API call with the provided input item
+                val response = apiCall(pathId, secondPathId, inputItem)
+                // Execute the onBefore callback with the response
+                onBefore(response)
+                // Check if the response contains no error
+                if (response.error == null) {
+                    val data = response.data
+                    // Execute the onSuccess callback with the data
+                    onSuccess(data)
+                    if (data != null) {
+                        // Map the response data to the desired Output type and emit a Success Resource
+                        val result: Output = data.toDataClass()
+                        emit(Resource.Success(result))
+                    } else {
+                        // Emit a Success Resource with the response message if data is null
+                        emit(Resource.Success(response.message as Output))
+                    }
+                } else {
+                    // Emit an Error Resource with the response message if there is an error
+                    emit(Resource.Error(response.message ?: "Error"))
+                }
+            } catch (e: Exception) {
+                // Log the exception and execute the onError callback with the exception message
+                Log.e("BaseRequest", e.toString())
+                onError(e.message.toString())
+                emit(Resource.Error(e.message.toString()))
+            }
+        }
+    }
 }

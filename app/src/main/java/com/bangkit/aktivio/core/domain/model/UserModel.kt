@@ -15,5 +15,6 @@ data class UserModel (
     val location: String?,
     val preferences: SurveyModel?,
     val communities: List<String>?,
-    val points: Int?
+    val points: Int?,
+    val token: String?
 ) : Parcelable

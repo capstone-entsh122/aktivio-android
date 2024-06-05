@@ -4,6 +4,9 @@ import com.google.gson.annotations.SerializedName
 
 data class EventItem (
 
+    @field:SerializedName("eventId")
+    val eventId : String? = null,
+
     @field:SerializedName("name")
     val name : String? = null,
 

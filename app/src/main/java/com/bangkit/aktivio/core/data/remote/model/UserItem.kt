@@ -31,5 +31,8 @@ data class UserItem (
     val communities: List<String>? = null,
 
     @field:SerializedName("points")
-    val points: Int? = null
+    val points: Int? = null,
+
+    @field:SerializedName("token")
+    val token: String? = null
 )
