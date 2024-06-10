@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
 class CommunityRepository @Inject constructor(private val apiService: ApiService) :
     ICommunityRepository {
     override suspend fun createCommunity(communityItem: CommunityItem): Flow<Resource<CommunityModel>> {

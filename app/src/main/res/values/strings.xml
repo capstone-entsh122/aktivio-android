@@ -16,4 +16,11 @@
     <string name="username">Username</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="login_redirect">Already have an account? <b>Login here</b></string>
+    <string name="placeholder_title">Judul</string>
+    <string name="placeholder_desc">Deskripsi</string>
+    <string name="placholder_type">Post-Regis</string>
+    <string name="next">Next</string>
+    <string name="post_regis">Post-Regis</string>
+    <string name="survey_plan">Survey Plan</string>
+    <string name="register">Register</string>
 </resources>

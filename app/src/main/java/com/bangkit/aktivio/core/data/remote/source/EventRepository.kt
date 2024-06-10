@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
 class EventRepository @Inject constructor(private val apiService: ApiService) : IEventRepository {
     override suspend fun createEvent(
         communityId: String,

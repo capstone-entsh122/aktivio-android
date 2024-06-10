@@ -2,5 +2,46 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="text">#4A4A4A</color>
+    <color name="border">#D6D6D6</color>
+    <color name="transparent">#00000000</color>
+    <color name="error">#EA4242</color>
+    <color name="success">#35A331</color>
     <color name="red500">#FFE86766</color>
+
+    <!-- Violet colors -->
+    <color name="violet_50">#f6f1fb</color>
+    <color name="violet_100">#e0c2f7</color>
+    <color name="violet_200">#d3b4eb</color>
+    <color name="violet_300">#bf91e2</color>
+    <color name="violet_400">#b37cdd</color>
+    <color name="violet_500">#a05bd4</color>
+    <color name="violet_600">#9253c1</color>
+    <color name="violet_700">#724197</color>
+    <color name="violet_800">#583275</color>
+    <color name="violet_900">#432659</color>
+
+    <!-- Red colors -->
+    <color name="red_50">#fff0f0</color>
+    <color name="red_100">#f8d0d0</color>
+    <color name="red_200">#f4b9b9</color>
+    <color name="red_300">#f09998</color>
+    <color name="red_400">#ed8585</color>
+    <color name="red_500">#e86766</color>
+    <color name="red_600">#d35e5d</color>
+    <color name="red_700">#a54948</color>
+    <color name="red_800">#803938</color>
+    <color name="red_900">#612b2b</color>
+
+    <!-- Yellow colors -->
+    <color name="yellow_50">#fef8e6</color>
+    <color name="yellow_100">#fde9c4</color>
+    <color name="yellow_200">#fcdca8</color>
+    <color name="yellow_300">#fbcf80</color>
+    <color name="yellow_400">#fac567</color>
+    <color name="yellow_500">#f9b741</color>
+    <color name="yellow_600">#e7a73b</color>
+    <color name="yellow_700">#b1822e</color>
+    <color name="yellow_800">#896542</color>
+    <color name="yellow_900">#694d1b</color>
 </resources>

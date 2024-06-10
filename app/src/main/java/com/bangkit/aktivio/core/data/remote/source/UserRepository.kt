@@ -15,8 +15,8 @@ import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class UserRepository @Inject constructor(private val apiService: ApiService) : IUserRepository {
+
+class UserRepository(private val apiService: ApiService) : IUserRepository {
     override suspend fun signUp(userItem: UserItem): Flow<Resource<String>> {
         return BaseRequest.send(apiService::signUp, userItem)
 

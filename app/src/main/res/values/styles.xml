@@ -4,5 +4,6 @@
         <item name="colorPrimary">@color/red500</item>
         <item name="colorPrimaryVariant">@color/red500</item>
         <item name="colorOnPrimary">@android:color/white</item>
+
     </style>
 </resources>

@@ -10,8 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
-class SportPlanRepository @Inject constructor(private val apiService: ApiService) : ISportPlanRepository {
+
+class SportPlanRepository (private val apiService: ApiService) : ISportPlanRepository {
     override suspend fun getSportPlan(planId: String): Flow<Resource<PlanModel>> {
         return BaseRequest.send(apiService::getSportPlan, planId)
     }

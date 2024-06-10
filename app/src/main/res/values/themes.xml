@@ -4,7 +4,51 @@
         <item name="colorPrimary">@color/red500</item>
         <item name="colorPrimaryVariant">@color/red500</item>
         <item name="colorOnPrimary">@android:color/white</item>
+        <item name="progressBarStyle">@color/red500</item>
+    </style>
+
+    <style name="DefaultInputBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxCornerRadiusTopStart">10dp</item>
+        <item name="boxCornerRadiusTopEnd">10dp</item>
+        <item name="boxCornerRadiusBottomStart">10dp</item>
+        <item name="boxCornerRadiusBottomEnd">10dp</item>
     </style>
 
     <style name="Theme.Aktivio" parent="Base.Theme.Aktivio" />
+
+    <style name="TypeTextSurvey">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/red_500</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="TitleTextSurvey">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="DescTextSurvey">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="AnswerTextSurvey">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="ButtonTextLight">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="ButtonTextDark">
+        <item name="android:textSize">16sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
 </resources>

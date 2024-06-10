@@ -10,7 +10,7 @@ import java.io.File
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+
 class DietaryRepository @Inject constructor(private val apiService: ApiService) : IDietaryRepository {
     override suspend fun predictFoodCalories(image: MultipartBody.Part): Flow<Resource<Map<String, Any>>> {
         return BaseRequest.send(apiService::predictFoodCalories, image)
