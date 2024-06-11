@@ -3,27 +3,39 @@ package com.bangkit.aktivio.core.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class SurveyItem(
+    @field:SerializedName("gender")
+    val gender: String? = null,
+
+    @field:SerializedName("age")
+    val age: Int? = null,
+
+    @field:SerializedName("location")
+    val location: String? = null,
+
+    @field:SerializedName("equipment")
+    val equipment: String? = null,
+
     @field:SerializedName("motivation")
-    val motivation: String,
+    val motivation: String? = null,
 
     @field:SerializedName("availableTime")
-    val availableTime: Int,
+    val availableTime: Int? = null,
 
     @field:SerializedName("fitnessLevel")
-    val fitnessLevel: String,
+    val fitnessLevel: String? = null,
 
     @field:SerializedName("placePreference")
-    val placePreference: String,
+    val placePreference: String? = null,
 
     @field:SerializedName("socialPreference")
-    val socialPreference: String,
+    val socialPreference: String? = null,
 
     @field:SerializedName("diseaseHistory")
-    val diseaseHistory: List<String>,
+    val diseaseHistory: List<String>? = null,
 
     @field:SerializedName("weight")
-    val weight: Int?,
+    val weight: Int? = null,
 
     @field:SerializedName("height")
-    val height: Int?
+    val height: Int? = null
 )

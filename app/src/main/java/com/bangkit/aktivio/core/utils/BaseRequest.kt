@@ -27,6 +27,9 @@ object BaseRequest {
     /// @param onSuccess A callback function to be executed on a successful response, with the response data as its parameter.
     /// @param onError A callback function to be executed on an error response, with the error message as its parameter.
     /// @return A Flow that emits Resource<Output> representing the state of the operation.
+
+
+
     suspend inline fun <reified Input : Any, reified Output : Any?> send(
         crossinline apiCall: suspend (Input) -> DefaultResponse,
         inputItem: Input,

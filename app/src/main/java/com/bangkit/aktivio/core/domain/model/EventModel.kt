@@ -6,6 +6,7 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class EventModel(
+    val eventId: String?,
     val name: String?,
     val description: String?,
     val creator: String?,

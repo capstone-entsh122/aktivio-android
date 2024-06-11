@@ -72,11 +72,7 @@ class RegisterActivity : AppCompatActivity() {
                     displayName = etUsername.text.toString(),
                     password = etPassword.text.toString()
                 )
-                val intent = Intent(this@RegisterActivity, SurveyActivity::class.java).apply {
-                    putExtras(Bundle().apply {
-                        putParcelable("user", data)
-                    })
-                }
+                val intent = Intent(this@RegisterActivity, SurveyActivity::class.java)
                 startActivity(intent)
             }
         }

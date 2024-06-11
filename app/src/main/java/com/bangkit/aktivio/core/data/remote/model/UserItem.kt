@@ -15,6 +15,9 @@ data class UserItem (
     @field:SerializedName("gender")
     val gender: String? = null,
 
+    @field:SerializedName("password")
+    val password: String? = null,
+
     @field:SerializedName("age")
     val age: Int? = null,
 
