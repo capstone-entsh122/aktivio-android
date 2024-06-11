@@ -12,10 +12,16 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class RegisterViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
-    fun signUp(userItem: UserItem) : LiveData<Resource<Unit>> {
+class LoginViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
+    fun signIn(userItem: UserItem) : LiveData<Resource<Unit>> {
         return runBlocking {
-            userRepository.signUp(userItem).asLiveData()
+            userRepository.signIn(userItem).asLiveData()
+        }
+    }
+
+    fun googleSign() : LiveData<Resource<FirebaseUser>> {
+        return runBlocking {
+            userRepository.googleSignIn().asLiveData()
         }
     }
 }

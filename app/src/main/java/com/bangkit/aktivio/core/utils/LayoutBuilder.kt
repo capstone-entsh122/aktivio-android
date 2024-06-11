@@ -10,12 +10,14 @@ import com.bangkit.aktivio.R
 import com.bangkit.aktivio.config.QuestionType
 import com.bangkit.aktivio.core.domain.model.SurveyQuestion
 import com.google.android.gms.maps.MapView
+import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.card.MaterialCardView
-import org.w3c.dom.Text
+import com.google.android.material.checkbox.MaterialCheckBox
+import com.google.android.material.radiobutton.MaterialRadioButton
 
 object LayoutBuilder {
-    fun build(parent: LinearLayout, data: SurveyQuestion, layoutInflater: LayoutInflater, onInit: (Any?, MaterialCardView, Map<String, TextView>?, Map<String,EditText>?) -> Unit, onSelected: (Any?) -> Unit){
+    fun build(parent: LinearLayout, data: SurveyQuestion, layoutInflater: LayoutInflater, onInit: (Any?, MaterialCardView, Map<String, TextView>?, Map<String,EditText>?, MaterialCheckBox?) -> Unit, onSelected: (Any?) -> Unit){
         data.apply{
             when(type){
                 QuestionType.DOUBLE_BOX -> {
@@ -28,7 +30,7 @@ object LayoutBuilder {
                         imageView.setImageResource(item.icon!!)
                         textView.text = item.title
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvDoubleBox)
-                        onInit(item.value,cardView, null, null)
+                        onInit(item.value,cardView, null, null, null)
                         itemView.setOnClickListener {
                             onSelected(item.value)
                         }
@@ -43,13 +45,15 @@ object LayoutBuilder {
                     val btnSave: Button = itemView.findViewById(R.id.btnSave)
                     mapView.onCreate(null)
                     mapView.getMapAsync { googleMap ->
+                        var currentMarker: Marker? = null
                         val cardView: MaterialCardView = itemView.findViewById(R.id.cvSingleBox)
                         onInit(null,cardView, mapOf(
                             "location" to tvLocation
-                        ), null)
+                        ), null, null)
                         googleMap.setOnMapClickListener { latLng ->
                             googleMap.clear()
-                            googleMap.addMarker(MarkerOptions().position(latLng).title("Selected Location"))
+                            currentMarker?.remove()
+                            currentMarker = googleMap.addMarker(MarkerOptions().position(latLng).title("Selected Location"))
                             tvLocation.text = GeoHelper.getAddressFromLocation(latLng.latitude, latLng.longitude, itemView.context)
                             btnSave.setOnClickListener {
                                 onSelected(tvLocation.text)
@@ -70,14 +74,25 @@ object LayoutBuilder {
                         tvTitle.text = item.title
                         tvSubtitle.text = item.description
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvTripleBox)
-                        onInit(item.value,cardView, null, null)
+                        onInit(item.value,cardView, null, null, null)
                         itemView.setOnClickListener {
                             onSelected(item.value)
                         }
                     }
                 }
-                QuestionType.MULTI_RADIO -> {
+                QuestionType.MULTI_CHECKBOX -> {
                     parent.removeAllViews()
+                    options?.forEach { item ->
+                        val itemView = layoutInflater.inflate(R.layout.item_multi_checkbox, parent, false)
+                        parent.addView(itemView)
+                        val checkBox : MaterialCheckBox = itemView.findViewById(R.id.cbSurvey)
+                        val cardView : MaterialCardView = itemView.findViewById(R.id.cvCheckBox)
+                        checkBox.text = item.title
+                        onInit(item.value,cardView, null, null, checkBox)
+                        itemView.setOnClickListener {
+                            onSelected(item.value)
+                        }
+                    }
                 }
                 QuestionType.INPUT_BOX -> {
                     parent.removeAllViews()

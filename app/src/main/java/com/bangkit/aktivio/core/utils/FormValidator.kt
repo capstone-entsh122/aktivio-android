@@ -4,11 +4,12 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.core.widget.doOnTextChanged
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.types.ValidationRules
 
 object FormValidator {
     fun setupFormValidation(
         forms: List<EditText>,
-        validationRules: Map<EditText, (String) -> Boolean>,
+        validationRules: ValidationRules,
         actionButton: Button
     ) {
         forms.forEach { form ->
@@ -20,7 +21,7 @@ object FormValidator {
         }
     }
 
-    private fun getErrorMessage(form: EditText, validationRules: Map<EditText, (String) -> Boolean>): String {
+    private fun getErrorMessage(form: EditText, validationRules: ValidationRules): String {
         return when (form) {
             in validationRules.keys -> when (form.id) {
                 R.id.et_email -> "Invalid email"

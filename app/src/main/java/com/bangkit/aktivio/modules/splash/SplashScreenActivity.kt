@@ -6,7 +6,9 @@ import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.utils.Firebase
 import com.bangkit.aktivio.modules.auth.OnboardingActivity
+import com.bangkit.aktivio.modules.home.MainActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -18,7 +20,12 @@ class SplashScreenActivity : AppCompatActivity() {
         ivLogo.alpha = 0f
         ivLogo.animate().setDuration(1500).alpha(1f).withEndAction {
             val i = Intent(this, OnboardingActivity::class.java)
-            startActivity(i)
+            val j = Intent(this, MainActivity::class.java)
+            if(Firebase.user != null) {
+                startActivity(j)
+            } else {
+                startActivity(i)
+            }
             overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
             finish()
         }

@@ -1,7 +1,7 @@
 package com.bangkit.aktivio.modules.survey
 
 import android.os.Bundle
-import android.util.Log
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -9,14 +9,12 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.config.QuestionType
-import com.bangkit.aktivio.config.SurveyData
-import com.bangkit.aktivio.config.SurveyType
+import com.bangkit.aktivio.core.data.Resource
 import com.bangkit.aktivio.core.utils.LayoutBuilder
+import com.bangkit.aktivio.core.utils.toast
 import com.bangkit.aktivio.databinding.ActivitySurveyBinding
 import com.google.android.gms.maps.MapView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.runBlocking
 
 @AndroidEntryPoint
 class SurveyActivity : AppCompatActivity() {
@@ -35,22 +33,67 @@ class SurveyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        showLoading(false)
         binding.tvType.text = getString(R.string.survey_plan)
         initListener()
         initData()
     }
 
+    private fun showLoading(state: Boolean) {
+        with(binding) {
+            if (state) {
+                progressContainer.visibility = View.VISIBLE
+                circularProgressBar.setProgressWithAnimation(100f, 1000)
+            } else {
+                progressContainer.visibility = View.GONE
+                circularProgressBar.progress = 0f
+            }
+        }
+    }
+
     private fun initListener() {
         with(binding) {
-            btnBack.setOnClickListener {
-                viewModel.prevQuestion()
-            }
-            btnNext.setOnClickListener {
-                viewModel.nextQuestion {
-                    viewModel.updateProfile(it).observe(this@SurveyActivity){
-
-                    }
-                    true
+            viewModel.apply {
+                btnBack.setOnClickListener {
+                    prevQuestion()
+                }
+                btnNext.setOnClickListener {
+                    nextQuestion(
+                        onProfileUpdate = { data ->
+                            updateProfile(data).observe(this@SurveyActivity){ result ->
+                                when(result) {
+                                    is Resource.Error -> {
+                                        showLoading(false)
+                                        toast(result.message.toString())
+                                    }
+                                    is Resource.Loading -> {
+                                        showLoading(true)
+                                    }
+                                    is Resource.Success -> {
+                                        showLoading(false)
+                                        toast("Profile updated")
+                                    }
+                                }
+                            }
+                        },
+                        onSurveySubmit = { data ->
+                            updateUserPref(data).observe(this@SurveyActivity){result ->
+                                when(result){
+                                    is Resource.Error -> {
+                                        showLoading(false)
+                                        toast(result.message.toString())
+                                    }
+                                    is Resource.Loading -> {
+                                        showLoading(true)
+                                    }
+                                    is Resource.Success -> {
+                                        showLoading(false)
+                                        toast("Survey submitted")
+                                    }
+                                }
+                            }
+                        }
+                    )
                 }
             }
         }
@@ -63,7 +106,7 @@ class SurveyActivity : AppCompatActivity() {
                     tvTitle.text = it.question
                     tvDesc.text = it.description
                     LayoutBuilder.build(llOptions, it, layoutInflater,
-                        onInit = { value,cardView, tv, et ->
+                        onInit = { value,cardView, tv, et, rb ->
                         user.observe(this@SurveyActivity){ u ->
                             cardView.strokeColor = if (u[it.field] == value) {
                                 resources.getColor(R.color.red_500, null)
@@ -72,12 +115,21 @@ class SurveyActivity : AppCompatActivity() {
                             }
                             if(u[it.field] != null){
                                 tv?.get(it.field)?.text = u[it.field].toString()
-                            }
-                            if(u[it.field] != null){
                                 et?.get(it.field)?.setText(u[it.field].toString())
+                                if(u[it.field] is List<*>){
+                                    val list = u[it.field] as List<*>
+                                    rb?.isChecked = list.contains(value)
+                                }
                             }
+                            btnNext.isEnabled = u[it.field] != null
+                            btnNext.setCardBackgroundColor(
+                                if (u[it.field] != null) {
+                                    resources.getColor(R.color.red_500, null)
+                                } else {
+                                    resources.getColor(R.color.border, null)
+                                }
+                            )
                         }
-
                     }, onSelected = { value ->
                         addData(it.field, value)
                             getData()

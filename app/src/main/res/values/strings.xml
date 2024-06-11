@@ -24,5 +24,4 @@
     <string name="survey_plan">Survey Plan</string>
     <string name="register">Register</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="login_with_google">Login with Google</string>
 </resources>

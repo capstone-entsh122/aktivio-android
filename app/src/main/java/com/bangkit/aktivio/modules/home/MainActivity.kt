@@ -28,29 +28,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val userItem = UserItem(userId = "1", email = "coderadin@gmail.com")
-        Log.d("UserItem", userItem.toString())
-        val userModel : UserModel = userItem.mapTo()
-        Log.d("UserModel", userModel.toString())
-
-        repositoryCheck()
-
     }
 
-    fun repositoryCheck() {
-        val signUpData = UserItem(
-            email = "contoh@gmail.com",
-            displayName = "Contoh",
-            gender = "male",
-            age = 21,
-            equipment = "none"
-        )
-        viewModel.signUp(signUpData).observe(this) {
-            when(it) {
-                is Resource.Error -> Log.d("Error", it.message ?: "Error")
-                is Resource.Loading -> Log.d("Loading", "Loading")
-                is Resource.Success -> Log.d("Success", it.data.toString())
-            }
-        }
-    }
+
 }

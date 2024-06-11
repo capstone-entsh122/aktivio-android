@@ -6,15 +6,18 @@ import com.bangkit.aktivio.core.data.remote.model.UserItem
 import com.bangkit.aktivio.core.domain.model.CommunityModel
 import com.bangkit.aktivio.core.domain.model.PlanModel
 import com.bangkit.aktivio.core.domain.model.UserModel
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.flow.Flow
 import okhttp3.MultipartBody
 import java.io.File
 
 
 interface IUserRepository {
-    suspend fun signUp(userItem: UserItem) : Flow<Resource<String>>
+    suspend fun signUp(userItem: UserItem) : Flow<Resource<Unit>>
 
-    suspend fun signIn(userItem: UserItem) : Flow<Resource<UserModel>>
+    suspend fun signIn(userItem: UserItem) : Flow<Resource<Unit>>
+
+    suspend fun googleSignIn() : Flow<Resource<FirebaseUser>>
 
     // TODO: Change to fixed data class later
     suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>>

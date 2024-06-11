@@ -37,17 +37,7 @@
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".modules.survey.SurveyActivity"
-            android:exported="false">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-        </activity>
-        <activity
-            android:name=".modules.auth.RegisterActivity"
-            android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -55,8 +45,20 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".modules.auth.RegisterActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize">
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+        </activity>
+        <activity
             android:name=".modules.auth.LoginActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            />
         <activity
             android:name=".modules.auth.OnboardingActivity"
             android:exported="true" />

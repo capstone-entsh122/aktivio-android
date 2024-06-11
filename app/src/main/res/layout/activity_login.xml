@@ -7,7 +7,32 @@
     android:layout_height="match_parent"
     tools:context=".modules.auth.LoginActivity"
     android:fitsSystemWindows="true"
-    android:background="@drawable/bg_login">
+    android:background="@drawable/bg_register">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/progress_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:backgroundTint="#55000000"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.mikhaellopez.circularprogressbar.CircularProgressBar
+            android:id="@+id/circularProgressBar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            app:cpb_background_progressbar_color="@color/red_50"
+            app:cpb_background_progressbar_width="5dp"
+            app:cpb_progress_direction="to_right"
+            app:cpb_progressbar_color="@color/red_500"
+            app:cpb_progressbar_width="10dp"
+            app:cpb_round_border="true" />
+
+    </androidx.cardview.widget.CardView>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -18,7 +43,6 @@
         app:layout_constraintBottom_toBottomOf="parent">
 
         <LinearLayout
-            android:layout_gravity="bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -163,7 +187,7 @@
                     android:layout_marginTop="20dp"
                     android:background="@drawable/bg_button_inactive"
                     android:paddingVertical="12dp"
-                    android:text="@string/login_with_google"
+                    android:text="Login with Google"
                     app:icon="@drawable/google"
                     app:iconGravity="textStart"
                     app:iconSize="20dp" />
