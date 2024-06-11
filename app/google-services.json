@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1040960951129",
+    "project_id": "aktivio-development",
+    "storage_bucket": "aktivio-development.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1040960951129:android:9d0fb780da9b7ff2a6f248",
+        "android_client_info": {
+          "package_name": "com.bangkit.aktivio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1040960951129-gah4u80vbi8jup23uifvipi7n47ic86b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.bangkit.aktivio",
+            "certificate_hash": "e0505262f89a385f1fdb81780f630432a766b150"
+          }
+        },
+        {
+          "client_id": "1040960951129-o5bt8if93ga7hjqse9ja61ensusu65hl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDYtegFwks3Bv_zijMU-kRthwgK8mYPqYI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1040960951129-o5bt8if93ga7hjqse9ja61ensusu65hl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
