@@ -18,7 +18,8 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
-        buildConfigField("String", "BASE_URL", "\"https://a380f15e-a19c-4d80-889b-aebebb67762d.mock.pstmn.io/api/\"")
+        buildConfigField("String", "BASE_URL", "\"https://be-aktivio-xvcqyzplqq-et.a.run.app/api/\"")
+        buildConfigField("String", "CLIENT_ID", "\"1040960951129-tq9ui7kvoc82dfh5bt9hjfomtdcb0t1b.apps.googleusercontent.com\"")
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -56,7 +57,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.google.android.gms:play-services-auth:21.2.0")
     implementation("com.mikhaellopez:circularprogressbar:3.1.0")
+    implementation("com.github.Spikeysanju:MotionToast:1.4")
     implementation(platform("com.google.firebase:firebase-bom:33.1.0"))
     implementation("com.google.firebase:firebase-auth")
     implementation("com.google.firebase:firebase-firestore")

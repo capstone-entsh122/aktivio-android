@@ -9,7 +9,6 @@
     android:fitsSystemWindows="true"
     android:background="@drawable/bg_register">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/progress_container"
         android:layout_width="match_parent"
@@ -81,14 +80,14 @@
                 android:gravity="bottom"
                 android:orientation="vertical"
                 android:paddingHorizontal="32dp"
-                android:paddingTop="20dp"
+                android:paddingTop="16dp"
                 android:paddingBottom="48dp">
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/DefaultInputBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:focusable="true"
                     android:hint="@string/email"
                     android:textColorHint="@color/border"
@@ -113,7 +112,7 @@
                     style="@style/DefaultInputBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="16dp"
                     android:focusable="true"
                     android:textColorHint="@color/border"
                     app:boxBackgroundMode="outline"
@@ -179,18 +178,43 @@
                     app:iconGravity="textStart"
                     app:iconSize="20dp" />
 
-                <Button
-                    android:id="@+id/btn_google"
-                    style="@style/ButtonTextLight"
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/btnGoogle"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:background="@drawable/bg_button_inactive"
+                    android:layout_height="55dp"
                     android:paddingVertical="12dp"
-                    android:text="Login with Google"
-                    app:icon="@drawable/google"
-                    app:iconGravity="textStart"
-                    app:iconSize="20dp" />
+                    android:paddingHorizontal="20dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="10dp"
+                    app:strokeColor="@color/border"
+                    >
+
+                    <LinearLayout
+                        android:layout_gravity="center"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/google"
+                            />
+
+                        <TextView
+                            android:id="@+id/btnNextSurvey"
+                            android:layout_marginStart="8dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="22dp"
+                            android:text="@string/login_with_google"
+                            style="@style/ButtonTextDark"
+                            />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
 
                 <TextView
                     android:id="@+id/btn_register"

@@ -1,5 +1,6 @@
 package com.bangkit.aktivio.modules.survey
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -10,11 +11,14 @@ import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.config.QuestionType
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.core.utils.LayoutBuilder
-import com.bangkit.aktivio.core.utils.toast
+import com.bangkit.aktivio.core.utils.Extensions.toast
 import com.bangkit.aktivio.databinding.ActivitySurveyBinding
 import com.google.android.gms.maps.MapView
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.runBlocking
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
 class SurveyActivity : AppCompatActivity() {
@@ -33,6 +37,7 @@ class SurveyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        viewModel.deprecToken()
         showLoading(false)
         binding.tvType.text = getString(R.string.survey_plan)
         initListener()
@@ -55,7 +60,9 @@ class SurveyActivity : AppCompatActivity() {
         with(binding) {
             viewModel.apply {
                 btnBack.setOnClickListener {
-                    prevQuestion()
+                    prevQuestion{
+                        toast("Warning ⚠️","You can't go back", MotionToastStyle.WARNING)
+                    }
                 }
                 btnNext.setOnClickListener {
                     nextQuestion(
@@ -64,34 +71,35 @@ class SurveyActivity : AppCompatActivity() {
                                 when(result) {
                                     is Resource.Error -> {
                                         showLoading(false)
-                                        toast(result.message.toString())
+                                        toast("There is an Error 😥",result.message.toString(), MotionToastStyle.ERROR)
                                     }
                                     is Resource.Loading -> {
                                         showLoading(true)
                                     }
                                     is Resource.Success -> {
                                         showLoading(false)
-                                        toast("Profile updated")
+                                        toast("Success 🥳","Profile successfully updated", MotionToastStyle.SUCCESS)
                                     }
                                 }
                             }
                         },
                         onSurveySubmit = { data ->
-                            updateUserPref(data).observe(this@SurveyActivity){result ->
-                                when(result){
-                                    is Resource.Error -> {
-                                        showLoading(false)
-                                        toast(result.message.toString())
-                                    }
-                                    is Resource.Loading -> {
-                                        showLoading(true)
-                                    }
-                                    is Resource.Success -> {
-                                        showLoading(false)
-                                        toast("Survey submitted")
-                                    }
-                                }
-                            }
+                              startActivity(Intent(this@SurveyActivity, LoadingActivity::class.java))
+//                            updateUserPref(data).observe(this@SurveyActivity){result ->
+//                                when(result){
+//                                    is Resource.Error -> {
+//                                        showLoading(false)
+//                                        toast("There is an Error 😥",result.message.toString(), MotionToastStyle.ERROR)
+//                                    }
+//                                    is Resource.Loading -> {
+//                                        showLoading(true)
+//                                    }
+//                                    is Resource.Success -> {
+//                                        showLoading(false)
+//                                        toast("Success 🥳","Survey successfully submitted", MotionToastStyle.SUCCESS)
+//                                    }
+//                                }
+//                            }
                         }
                     )
                 }
@@ -103,10 +111,10 @@ class SurveyActivity : AppCompatActivity() {
         with(binding) {
             viewModel.apply {
                 question.observe(this@SurveyActivity) {
-                    tvTitle.text = it.question
+                    tvTitle.text = it.question.applyRedColorToText(this@SurveyActivity)
                     tvDesc.text = it.description
                     LayoutBuilder.build(llOptions, it, layoutInflater,
-                        onInit = { value,cardView, tv, et, rb ->
+                        onInit = { value,cardView, mappedView, singleView ->
                         user.observe(this@SurveyActivity){ u ->
                             cardView.strokeColor = if (u[it.field] == value) {
                                 resources.getColor(R.color.red_500, null)
@@ -114,11 +122,13 @@ class SurveyActivity : AppCompatActivity() {
                                 resources.getColor(R.color.border, null)
                             }
                             if(u[it.field] != null){
-                                tv?.get(it.field)?.text = u[it.field].toString()
-                                et?.get(it.field)?.setText(u[it.field].toString())
+                                mappedView?.get(it.field)?.text = u[it.field].toString()
+                                mappedView?.get(it.field)?.setText(u[it.field].toString())
                                 if(u[it.field] is List<*>){
                                     val list = u[it.field] as List<*>
-                                    rb?.isChecked = list.contains(value)
+                                    singleView?.isChecked = list.contains(value)
+                                } else {
+                                    singleView?.isChecked = u[it.field] == value
                                 }
                             }
                             btnNext.isEnabled = u[it.field] != null

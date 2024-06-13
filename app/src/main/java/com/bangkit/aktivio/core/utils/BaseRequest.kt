@@ -5,6 +5,7 @@ import com.bangkit.aktivio.core.data.Resource
 import com.bangkit.aktivio.core.data.remote.model.DefaultResponse
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.runBlocking
 
 /// Part of RsAndro (RsKit Families) : Mobile Development Tools
 /// BaseRequest Utility by Resma Adi Nugroho : @reezcode
@@ -31,8 +32,9 @@ object BaseRequest {
 
 
     suspend inline fun <reified Input : Any, reified Output : Any?> send(
-        crossinline apiCall: suspend (Input) -> DefaultResponse,
+        crossinline apiCall: suspend (String, Input) -> DefaultResponse,
         inputItem: Input,
+        token: String,
         crossinline onBefore: (DefaultResponse) -> Unit? = {},
         crossinline onSuccess: (Map<String, Any>?) -> Unit? = {},
         crossinline onError: (String) -> Unit? = {}
@@ -40,7 +42,7 @@ object BaseRequest {
         return flow {
             try {
                 // Perform the API call with the provided input item
-                val response = apiCall(inputItem)
+                val response = apiCall(token, inputItem)
                 // Execute the onBefore callback with the response
                 onBefore(response)
                 // Check if the response contains no error
@@ -70,7 +72,8 @@ object BaseRequest {
     }
 
     suspend inline fun <reified Output : Any?> single(
-        crossinline apiCall: suspend () -> DefaultResponse,
+        crossinline apiCall: suspend (String) -> DefaultResponse,
+        token: String,
         crossinline onBefore: (DefaultResponse) -> Unit? = {},
         crossinline onSuccess: (Map<String, Any>?) -> Unit? = {},
         crossinline onError: (String) -> Unit? = {}
@@ -78,7 +81,7 @@ object BaseRequest {
         return flow {
             try {
                 // Perform the API call
-                val response = apiCall()
+                val response = apiCall(token)
                 // Execute the onBefore callback with the response
                 onBefore(response)
                 // Check if the response contains no error
