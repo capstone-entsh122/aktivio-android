@@ -2,8 +2,7 @@
 <resources>
     <style name="CustomTextInputLayoutTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/red500</item>
-        <item name="colorPrimaryVariant">@color/red500</item>
-        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="colorPrimaryVariant">@color/red_50</item>
 
     </style>
 </resources>

@@ -14,6 +14,11 @@
         <item name="boxCornerRadiusBottomEnd">10dp</item>
     </style>
 
+    <style name="bottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="itemIconTint">@drawable/bottom_navbar</item>
+        <item name="itemTextColor">@drawable/bottom_navbar</item>
+    </style>
+
     <style name="Theme.Aktivio" parent="Base.Theme.Aktivio" />
 
     <style name="TypeTextSurvey">
