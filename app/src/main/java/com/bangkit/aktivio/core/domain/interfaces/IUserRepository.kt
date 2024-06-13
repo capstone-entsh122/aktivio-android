@@ -13,11 +13,6 @@ import java.io.File
 
 
 interface IUserRepository {
-    suspend fun signUp(userItem: UserItem) : Flow<Resource<Unit>>
-
-    suspend fun signIn(userItem: UserItem) : Flow<Resource<Unit>>
-
-    suspend fun googleSignIn() : Flow<Resource<FirebaseUser>>
 
     // TODO: Change to fixed data class later
     suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>>

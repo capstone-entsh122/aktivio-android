@@ -24,10 +24,11 @@ import com.bangkit.aktivio.core.domain.model.UserModel
 import com.bangkit.aktivio.core.types.ValidationRules
 import com.bangkit.aktivio.core.utils.FormValidator
 import com.bangkit.aktivio.core.utils.ValidationHelper
-import com.bangkit.aktivio.core.utils.toast
+import com.bangkit.aktivio.core.utils.Extensions.toast
 import com.bangkit.aktivio.databinding.ActivityRegisterBinding
 import com.bangkit.aktivio.modules.survey.SurveyActivity
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
@@ -96,14 +97,15 @@ class RegisterActivity : AppCompatActivity() {
                     when(it){
                         is Resource.Error -> {
                             showLoading(false)
-                            it.message?.let { it1 -> toast(it1) }
+                            it.message?.let { it1 -> toast("There is an Error 😥",
+                                it1, MotionToastStyle.ERROR) }
                         }
                         is Resource.Loading -> {
                             showLoading(true)
                         }
                         is Resource.Success -> {
                             showLoading(false)
-                            toast("Register Success")
+                            toast("Success 🥳", "Account successfully created", MotionToastStyle.SUCCESS)
                             val intent = Intent(this@RegisterActivity, SurveyActivity::class.java)
                             startActivity(intent)
                         }

@@ -1,6 +1,7 @@
 package com.bangkit.aktivio.core.data.remote.source
 
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.data.local.source.UserPreferencesRepository
 import com.bangkit.aktivio.core.data.remote.model.EventItem
 import com.bangkit.aktivio.core.data.remote.retrofit.ApiService
 import com.bangkit.aktivio.core.domain.interfaces.IEventRepository
@@ -11,7 +12,8 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 
-class EventRepository @Inject constructor(private val apiService: ApiService) : IEventRepository {
+class EventRepository(private val apiService: ApiService, private val userPreferencesRepository: UserPreferencesRepository) : IEventRepository {
+
     override suspend fun createEvent(
         communityId: String,
         eventItem: EventItem

@@ -9,6 +9,8 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.runBlocking
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -23,16 +25,31 @@ object NetworkModule {
     fun provideApiService(userPreferencesRepository: UserPreferencesRepository): ApiService {
         val loggingInterceptor =
             HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
+        val authorizationInterceptor = Interceptor { chain ->
+            val originalRequest = chain.request()
+            val token = runBlocking {
+                userPreferencesRepository.getToken().getOrNull() ?: ""
+            }
+            val requestBuilder = originalRequest.newBuilder()
+                .header(TokenAuthenticator.HEADER_AUTHORIZATION, TokenAuthenticator.HEADER_AUTHORIZATION_TYPE + token)
+            val newRequest = requestBuilder.build()
+            chain.proceed(newRequest)
+        }
+
         val client = OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .addInterceptor(ErrorInterceptor())
+            .addInterceptor(authorizationInterceptor)
             .authenticator(TokenAuthenticator(userPreferencesRepository))
             .build()
+
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()
+
         return retrofit.create(ApiService::class.java)
     }
 

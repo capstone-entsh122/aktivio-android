@@ -1,10 +1,11 @@
 package com.bangkit.aktivio.core.di
 
 import android.content.Context
+import com.bangkit.aktivio.core.data.local.source.UserPreferencesRepository
 import com.bangkit.aktivio.core.data.remote.retrofit.ApiService
+import com.bangkit.aktivio.core.data.remote.source.AuthRepository
 import com.bangkit.aktivio.core.data.remote.source.SportPlanRepository
 import com.bangkit.aktivio.core.data.remote.source.UserRepository
-import com.bangkit.aktivio.core.utils.RsToast
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,20 +19,20 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun provideToast(@ApplicationContext context: Context): RsToast {
-        return RsToast(context)
+    fun proviceAuthRepository(userPreferencesRepository: UserPreferencesRepository): AuthRepository {
+        return AuthRepository(userPreferencesRepository)
     }
 
     @Singleton
     @Provides
-    fun provideUserRepository(apiService: ApiService): UserRepository {
-        return UserRepository(apiService)
+    fun provideUserRepository(apiService: ApiService, userPreferencesRepository: UserPreferencesRepository): UserRepository {
+        return UserRepository(apiService, userPreferencesRepository)
     }
 
     @Singleton
     @Provides
-    fun provideSportPlanRepository(apiService: ApiService): SportPlanRepository {
-        return SportPlanRepository(apiService)
+    fun provideSportPlanRepository(apiService: ApiService, userPreferencesRepository: UserPreferencesRepository): SportPlanRepository {
+        return SportPlanRepository(apiService, userPreferencesRepository)
     }
 
 

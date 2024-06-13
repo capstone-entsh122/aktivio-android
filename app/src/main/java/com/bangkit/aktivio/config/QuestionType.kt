@@ -5,5 +5,6 @@ enum class QuestionType {
     SINGLE_BOX,
     TRIPLE_BOX,
     MULTI_CHECKBOX,
+    MULTI_RADIO,
     INPUT_BOX,
 }
