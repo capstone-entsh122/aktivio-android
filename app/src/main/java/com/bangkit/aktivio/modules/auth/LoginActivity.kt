@@ -24,6 +24,7 @@ import com.bangkit.aktivio.core.utils.Firebase.auth
 import com.bangkit.aktivio.core.utils.FormValidator
 import com.bangkit.aktivio.core.utils.ValidationHelper
 import com.bangkit.aktivio.databinding.ActivityLoginBinding
+import com.bangkit.aktivio.modules.home.MainActivity
 import com.bangkit.aktivio.modules.survey.SurveyActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -109,7 +110,7 @@ class LoginActivity : AppCompatActivity() {
                         }
                     }
                     toast("Success 😁","Account successfully logged in", MotionToastStyle.SUCCESS)
-                    val intent = Intent(this@LoginActivity, SurveyActivity::class.java)
+                    val intent = Intent(this@LoginActivity, MainActivity::class.java)
                     startActivity(intent)
 
                 } else {
@@ -150,10 +151,21 @@ class LoginActivity : AppCompatActivity() {
                         }
                         is Resource.Success -> {
                             showLoading(false)
+                            val user = auth.currentUser
+                            user?.getIdToken(true)?.addOnCompleteListener { tokenTask ->
+                                if (tokenTask.isSuccessful) {
+                                    val token = tokenTask.result?.token
+                                    if (token != null) {
+                                        viewModel.saveToken(token)
+                                    }
+                                    finish()
+                                } else {
+                                    toast("Error 😞","Failed to get token", MotionToastStyle.ERROR)
+                                }
+                            }
                             toast("Success 😁","Account successfully logged in", MotionToastStyle.SUCCESS)
                             val intent = Intent(this@LoginActivity, SurveyActivity::class.java)
                             startActivity(intent)
-                            finish()
                         }
                     }
                 }

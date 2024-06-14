@@ -66,11 +66,6 @@ class AuthRepository(private val userPreferencesRepository: UserPreferencesRepos
             try {
                 val result = signInWithEmailAndPassword(userItem.email!!, userItem.password!!)
                 emit(result)
-                val user = Firebase.auth.currentUser
-                val token = user?.getIdToken(true)?.result?.token
-                runBlocking {
-                    userPreferencesRepository.setToken(token!!)
-                }
             } catch (e: Exception) {
                 emit(Resource.Error(e.message.toString()))
             }

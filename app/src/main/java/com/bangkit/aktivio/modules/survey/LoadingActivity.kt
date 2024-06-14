@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.databinding.ActivityLoadingBinding
+import com.bangkit.aktivio.modules.result.OnboardResultActivity
 import com.bangkit.aktivio.modules.result.PlanResultActivity
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -36,7 +37,7 @@ class LoadingActivity : AppCompatActivity() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivAnim)
             root.postDelayed({
-                startActivity(Intent(this@LoadingActivity, PlanResultActivity::class.java))
+                startActivity(Intent(this@LoadingActivity, OnboardResultActivity::class.java))
             }, 5000)
         }
     }

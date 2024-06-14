@@ -82,7 +82,7 @@ object SurveyData {
             ),
             SurveyQuestion(
                 id = 5,
-                field = "healthCondition",
+                field = "diseaseHistory",
                 type = QuestionType.MULTI_CHECKBOX,
                 question = "What is your <red>health condition?<red>",
                 description = "You can choose more than 1",
@@ -205,7 +205,7 @@ object SurveyData {
             ),
             SurveyQuestion(
                 id = 8,
-                field = "location",
+                field = "placePreference",
                 type = QuestionType.DOUBLE_BOX,
                 question = "What is your exercise <red>preference place?<red>",
                 description = "Please choose the option below",
@@ -227,7 +227,7 @@ object SurveyData {
             ),
             SurveyQuestion(
                 id = 9,
-                field = "companion",
+                field = "socialPreference",
                 type = QuestionType.DOUBLE_BOX,
                 question = "Do you prefer to <red>exercise alone?<red>",
                 description = "Please choose the option below",
@@ -249,7 +249,7 @@ object SurveyData {
             ),
             SurveyQuestion(
                 id = 10,
-                field = "time",
+                field = "availableTime",
                 type = QuestionType.MULTI_RADIO,
                 question = "<red>How long<red> do you want to exercise?",
                 description = "Please choose the option below",

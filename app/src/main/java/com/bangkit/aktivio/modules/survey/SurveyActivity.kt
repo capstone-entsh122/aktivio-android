@@ -14,6 +14,7 @@ import com.bangkit.aktivio.core.data.Resource
 import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.core.utils.LayoutBuilder
 import com.bangkit.aktivio.core.utils.Extensions.toast
+import com.bangkit.aktivio.core.utils.Firebase
 import com.bangkit.aktivio.databinding.ActivitySurveyBinding
 import com.google.android.gms.maps.MapView
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,11 +38,38 @@ class SurveyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        viewModel.deprecToken()
+        saveUserData()
         showLoading(false)
         binding.tvType.text = getString(R.string.survey_plan)
         initListener()
         initData()
+    }
+
+    private fun saveUserData() {
+        val userAuth = Firebase.auth.currentUser
+        userAuth?.getIdToken(true)?.addOnCompleteListener { tokenTask ->
+            if (tokenTask.isSuccessful) {
+                val token = tokenTask.result?.token
+                if (token != null) {
+                    viewModel.saveToken(token)
+                    viewModel.saveRegisterData("Bearer $token").observe(this@SurveyActivity) {
+                        when(it) {
+                            is Resource.Error -> {
+                                toast("There is an Error 😥",it.message.toString(), MotionToastStyle.ERROR)
+                            }
+                            is Resource.Loading -> {
+                            }
+                            is Resource.Success -> {
+                                toast("Success 🥳","Data successfully saved", MotionToastStyle.SUCCESS)
+                            }
+                        }
+                    }
+                }
+            } else {
+                toast("Error 😞","Failed to get token", MotionToastStyle.ERROR)
+            }
+        }
+
     }
 
     private fun showLoading(state: Boolean) {
@@ -122,8 +150,11 @@ class SurveyActivity : AppCompatActivity() {
                                 resources.getColor(R.color.border, null)
                             }
                             if(u[it.field] != null){
-                                mappedView?.get(it.field)?.text = u[it.field].toString()
-                                mappedView?.get(it.field)?.setText(u[it.field].toString())
+                                if(it.type == QuestionType.SINGLE_BOX){
+                                    mappedView?.get(it.field)?.text = ((u as Map<*, *>)["location"] as Map<*,*>)["location"] as String
+                                } else {
+                                    mappedView?.get(it.field)?.text = u[it.field].toString()
+                                }
                                 if(u[it.field] is List<*>){
                                     val list = u[it.field] as List<*>
                                     singleView?.isChecked = list.contains(value)
