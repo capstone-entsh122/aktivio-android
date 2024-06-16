@@ -25,9 +25,8 @@ import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
 @HiltViewModel
-class SurveyViewModel @Inject constructor(private val userRepository: UserRepository, private val userPreferencesRepository: UserPreferencesRepository, private val savedStateHandle: SavedStateHandle) : ViewModel() {
+class SurveyViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-    val userData = savedStateHandle.getLiveData<UserModel>("user")
 
     private val _data = MutableLiveData<List<SurveyQuestion>>()
     val data: LiveData<List<SurveyQuestion>> = _data
@@ -41,23 +40,6 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
     val user: LiveData<Map<String, Any?>> = _user
     private val _lastQuestion = MutableLiveData<Boolean>()
     val lastQuestion: LiveData<Boolean> = _lastQuestion
-
-    fun saveToken(token: String) {
-        runBlocking {
-            userPreferencesRepository.setToken(token)
-        }
-    }
-
-    fun saveRegisterData(token: String) : LiveData<Resource<String>> {
-        return runBlocking {
-            userRepository.saveRegisterData(
-                UserItem(
-                displayName = userData.value?.displayName,
-                email = userData.value?.email,
-            ), token
-            ).asLiveData()
-        }
-    }
 
     init {
         _data.value = SurveyData.getSurveyData()

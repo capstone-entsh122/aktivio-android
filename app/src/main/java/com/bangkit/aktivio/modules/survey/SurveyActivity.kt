@@ -38,39 +38,13 @@ class SurveyActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        saveUserData()
         showLoading(false)
         binding.tvType.text = getString(R.string.survey_plan)
         initListener()
         initData()
     }
 
-    private fun saveUserData() {
-        val userAuth = Firebase.auth.currentUser
-        userAuth?.getIdToken(true)?.addOnCompleteListener { tokenTask ->
-            if (tokenTask.isSuccessful) {
-                val token = tokenTask.result?.token
-                if (token != null) {
-                    viewModel.saveToken(token)
-                    viewModel.saveRegisterData("Bearer $token").observe(this@SurveyActivity) {
-                        when(it) {
-                            is Resource.Error -> {
-                                toast("There is an Error 😥",it.message.toString(), MotionToastStyle.ERROR)
-                            }
-                            is Resource.Loading -> {
-                            }
-                            is Resource.Success -> {
-                                toast("Success 🥳","Data successfully saved", MotionToastStyle.SUCCESS)
-                            }
-                        }
-                    }
-                }
-            } else {
-                toast("Error 😞","Failed to get token", MotionToastStyle.ERROR)
-            }
-        }
 
-    }
 
     private fun showLoading(state: Boolean) {
         with(binding) {

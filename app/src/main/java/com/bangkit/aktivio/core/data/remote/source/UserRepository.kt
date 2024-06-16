@@ -21,9 +21,6 @@ import kotlin.coroutines.resume
 
 class UserRepository(private val apiService: ApiService, private val userPreferencesRepository: UserPreferencesRepository) : IUserRepository {
     val token =  "Bearer ${runBlocking { userPreferencesRepository.getToken().getOrNull().orEmpty() }}"
-    override suspend fun saveRegisterData(userItem: UserItem, token2: String): Flow<Resource<String>> {
-        return BaseRequest.send(apiService::saveRegisterData, userItem, token2)
-    }
 
     override suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>> {
         return BaseRequest.send(apiService::setUserPreferences, surveyItem, token)

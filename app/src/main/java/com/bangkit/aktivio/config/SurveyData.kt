@@ -90,7 +90,7 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "Heart or Cardiovascular disease",
-                        value = "heart or cardiovascular disease",
+                        value = "heart / cardiovascular disease",
                     ),
                     OptionModel(
                         id = 2,
@@ -110,12 +110,12 @@ object SurveyData {
                     OptionModel(
                         id = 5,
                         title = "Pregnant",
-                        value = "improve concentration and focus",
+                        value = "pregnant",
                     ),
                     OptionModel(
                         id = 6,
                         title = "Asthma or Respiratory disease",
-                        value = "asthma or respiratory disease",
+                        value = "asthma / respiratory disease",
                     ),
                 )
             ),
@@ -130,21 +130,21 @@ object SurveyData {
                         id = 1,
                         title = "Fancy Equipment",
                         description = "Equipment invest up to Rp. 4.000.000",
-                        value = "fancy",
+                        value = "mahal",
                         icon = R.drawable.ic_fancy_equipment
                     ),
                     OptionModel(
                         id = 2,
                         title = "Standard Equipment",
                         description = "Equipment invest up to Rp. 2.000.000",
-                        value = "standard",
+                        value = "sedang",
                         icon = R.drawable.ic_standard_equipment
                     ),
                     OptionModel(
                         id = 3,
                         title = "Cheap Equipment",
                         description = "Equipment invest up to Rp. 500.000",
-                        value = "cheap",
+                        value = "murah",
                         icon = R.drawable.ic_cheap_equipment
                     ),
                 )
@@ -159,47 +159,47 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "Improve heart health",
-                        value = "improve heart health",
+                        value = "meningkatkan kesehatan jantung",
                     ),
                     OptionModel(
                         id = 2,
                         title = "Improve muscle strength",
-                        value = "improve muscle strength",
+                        value = "meningkatkan kekuatan otot",
                     ),
                     OptionModel(
                         id = 3,
                         title = "Improve flexibility and body posture",
-                        value = "improve flexibility and body posture",
+                        value = "meningkatkan fleksibilitas dan postur tubuh",
                     ),
                     OptionModel(
                         id = 4,
                         title = "Improve coordination and motoric skills",
-                        value = "improve coordination and motoric skills",
+                        value = "meningkatkan koordinasi dan keterampilan motorik",
                     ),
                     OptionModel(
                         id = 5,
                         title = "Improve concentration and focus",
-                        value = "improve concentration and focus",
+                        value = "meningkatkan konsentrasi dan fokus",
                     ),
                     OptionModel(
                         id = 6,
                         title = "Reduce stress and mood improvement",
-                        value = "reduce stress and mood improvement",
+                        value = "mengurangi stres dan meningkatkan mood",
                     ),
                     OptionModel(
                         id = 7,
                         title = "Social skill improvement",
-                        value = "social skill improvement",
+                        value = "memperbaiki keterampilan sosial dan bersosialisasi",
                     ),
                     OptionModel(
                         id = 8,
                         title = "Enjoying the nature",
-                        value = "enjoying the nature",
+                        value = "menawarkan kesempatan menikmati alam",
                     ),
                     OptionModel(
                         id = 9,
                         title = "Improve stamina",
-                        value = "improve stamina",
+                        value = "meningkatkan stamina",
                     ),
                 )
             ),
@@ -257,27 +257,27 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "< 15 minutes",
-                        value = "<15",
+                        value = "< 15 menit",
                     ),
                     OptionModel(
                         id = 2,
                         title = "15-30 minutes",
-                        value = "15-30",
+                        value = "15-30 menit",
                     ),
                     OptionModel(
                         id = 3,
                         title = "30-45 minutes",
-                        value = "30-45",
+                        value = "30-45 menit",
                     ),
                     OptionModel(
                         id = 4,
                         title = "45-60 minutes",
-                        value = "45-60",
+                        value = "45-60 menit",
                     ),
                     OptionModel(
                         id = 5,
                         title = "> 60 minutes",
-                        value = ">60",
+                        value = "> 60 menit",
                     ),
                 )
             ),

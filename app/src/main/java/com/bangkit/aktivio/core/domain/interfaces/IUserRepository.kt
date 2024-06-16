@@ -14,8 +14,6 @@ import java.io.File
 
 interface IUserRepository {
 
-    suspend fun saveRegisterData(userItem: UserItem, token2: String): Flow<Resource<String>>
-
     // TODO: Change to fixed data class later
     suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>>
 

@@ -20,5 +20,4 @@ class RegisterViewModel @Inject constructor(private val authRepository: AuthRepo
             authRepository.signUp(userItem).asLiveData()
         }
     }
-
 }

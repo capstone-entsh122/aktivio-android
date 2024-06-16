@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="315dp"
             android:src="@drawable/img_onboarding" />
 
         <TextView
@@ -40,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:lineSpacingExtra="3dp"
             android:text="@string/welcomingtext"
             android:textAlignment="center" />
     </LinearLayout>
@@ -54,15 +55,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.checkbox.MaterialCheckBox
-            android:id="@+id/cbTerms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/placeholder_desc"
-            style="@style/RadioTextSurvey"
-            android:padding="8dp"
-            />
 
         <Button
             android:id="@+id/btnLetStart"
