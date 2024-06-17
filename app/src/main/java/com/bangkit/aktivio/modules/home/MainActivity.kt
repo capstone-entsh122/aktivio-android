@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
                     loadFragment(homeFragment)
                     return@setOnItemSelectedListener   true
                 }
-                R.id.event -> {
+                R.id.connect -> {
                     val eventFragment = EventFragment()
                     loadFragment(eventFragment)
                     return@setOnItemSelectedListener   true

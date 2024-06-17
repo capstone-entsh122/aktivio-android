@@ -5,4 +5,10 @@
         <item name="colorPrimaryVariant">@color/red_50</item>
 
     </style>
+
+    <style name="bottomNavigation.shape" parent="">
+        <item name="cornerFamily">?attr/shapeCornerFamily</item>
+        <item name="cornerSize">20%</item>
+
+    </style>
 </resources>

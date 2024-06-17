@@ -2,6 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Aktivio" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/red500</item>
+        <item name="colorPrimaryContainer">@color/red500</item>
         <item name="colorPrimaryVariant">@color/red500</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="progressBarStyle">@color/red500</item>
@@ -17,6 +18,11 @@
     <style name="bottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
         <item name="itemIconTint">@drawable/bottom_navbar</item>
         <item name="itemTextColor">@drawable/bottom_navbar</item>
+        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
+        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
+        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
+        <item name="shapeAppearance">@style/bottomNavigation.shape</item>
+        <item name="android:color">@color/red_50</item>
     </style>
 
     <style name="Theme.Aktivio" parent="Base.Theme.Aktivio" />

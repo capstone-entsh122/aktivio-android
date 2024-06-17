@@ -1,15 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".modules.profile.ProfileFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/profile_container"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hallo Profile Fragment!"
-        android:layout_gravity="center"
-        />
+        android:orientation="vertical"
+        android:paddingTop="32dp"
+        android:paddingHorizontal="16dp"
+        android:paddingBottom="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/profile_container">
 
-</FrameLayout>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_pict"
+            android:layout_width="108dp"
+            android:layout_height="108dp"
+            android:layout_gravity="center"
+            android:src="@drawable/default_profile"
+            android:layout_marginBottom="16dp"
+            />
+
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/username"
+            android:textSize="24sp"
+            android:textAlignment="center"
+            android:textStyle="bold"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/email"
+            android:textAlignment="center"
+            android:textSize="16sp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp">
+            <TextView
+                android:id="@+id/points"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:drawableStartCompat="@drawable/outline_coin"
+                app:drawableTint="@color/red500"
+                android:drawablePadding="10dp"
+                android:text="@string/points"
+                android:gravity="center"
+                android:layout_alignParentStart="true"
+                android:textSize="16sp" />
+            <TextView
+                android:id="@+id/level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/level"
+                android:layout_alignParentEnd="true"
+                app:drawableTint="@color/red500"
+                android:drawablePadding="10dp"
+                android:gravity="center"
+                android:textSize="16sp"
+                app:drawableStartCompat="@drawable/baseline_star_border_24" />
+        </RelativeLayout>
+        <Button
+            android:id="@+id/btn_redeem"
+            style="@style/ButtonTextLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            app:iconGravity="textStart"
+            app:icon="@drawable/baseline_swap_horiz_24"
+            android:background="@drawable/bg_button_primary"
+            android:drawableTint="#FFF"
+            android:paddingVertical="12dp"
+            android:text="@string/btn_redeem"
+            app:iconSize="24dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_survey"
+        android:background="@drawable/bg_button_inactive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/white"
+        android:paddingVertical="12dp"
+        android:text="@string/take_survey_again"
+        android:textAlignment="textStart"
+        app:icon="@drawable/outline_edit_note_24"
+        android:textSize="16sp"
+        app:iconTint="@color/text"
+        app:iconPadding="11dp"
+        android:textColor="@color/text"
+        app:layout_constraintTop_toBottomOf="@+id/profile_container"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/poppins_medium"
+        app:iconSize="28dp" />
+
+    <Button
+        android:id="@+id/btn_achievement"
+        android:background="@drawable/bg_button_inactive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/white"
+        android:paddingVertical="12dp"
+        android:textAlignment="textStart"
+        android:text="@string/achievements"
+        app:icon="@drawable/outline_emoji_events_24"
+        android:textSize="16sp"
+        app:iconTint="@color/text"
+        app:iconPadding="11dp"
+        android:textColor="@color/text"
+        app:layout_constraintTop_toBottomOf="@+id/btn_survey"
+        android:layout_marginHorizontal="16dp"
+        android:fontFamily="@font/poppins_medium"
+        app:iconSize="28dp" />
+
+    <Button
+        android:id="@+id/btn_settings"
+        android:background="@drawable/bg_button_inactive"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        app:backgroundTint="@color/white"
+        android:paddingVertical="12dp"
+        android:text="@string/settings"
+        android:fontFamily="@font/poppins_medium"
+        android:textAlignment="textStart"
+        app:icon="@drawable/outline_settings_24"
+        app:iconTint="@color/text"
+        android:textSize="16sp"
+        app:iconPadding="11dp"
+        android:textColor="@color/text"
+        app:layout_constraintTop_toBottomOf="@+id/btn_achievement"
+        android:layout_marginHorizontal="16dp"
+        app:iconSize="28dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
