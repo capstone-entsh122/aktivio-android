@@ -38,4 +38,8 @@
     <string name="exercise">Exercise</string>
     <string name="dietary">Dietary</string>
     <string name="profile">Profile</string>
+    <string name="welcomingtext">You will <b>answer some questions</b> that will help you to get your exercise <b>recommendations</b> to make a\n<b>healthier you.</b></string>
+    <string name="let_s_start">Let\'s Start</string>
+    <string name="see_exercise_plan">See Exercise Plan</string>
+    <string name="onboardresult">Our <b>AI</b> had deciding and <b>planning</b> for your <b>best exercise</b> and <b>dietary</b>\nthat you need.</string>
 </resources>

@@ -58,7 +58,11 @@ object LayoutBuilder {
                             currentMarker = googleMap.addMarker(MarkerOptions().position(latLng).title("Selected Location"))
                             tvLocation.text = GeoHelper.getAddressFromLocation(latLng.latitude, latLng.longitude, itemView.context)
                             btnSave.setOnClickListener {
-                                onSelected(tvLocation.text)
+                                onSelected(mapOf(
+                                    "location" to tvLocation.text.toString(),
+                                    "lat" to latLng.latitude,
+                                    "lng" to latLng.longitude
+                                ))
                             }
                         }
                     }

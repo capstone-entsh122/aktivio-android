@@ -9,6 +9,7 @@ import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.utils.Firebase
 import com.bangkit.aktivio.modules.auth.OnboardingActivity
 import com.bangkit.aktivio.modules.home.MainActivity
+import com.bangkit.aktivio.modules.survey.WelcomeActivity
 
 class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -3,7 +3,9 @@ package com.bangkit.aktivio.core.data.remote.source
 import com.bangkit.aktivio.core.data.Resource
 import com.bangkit.aktivio.core.data.local.source.UserPreferencesRepository
 import com.bangkit.aktivio.core.data.remote.model.UserItem
+import com.bangkit.aktivio.core.data.remote.retrofit.ApiService
 import com.bangkit.aktivio.core.domain.interfaces.IAuthRepository
+import com.bangkit.aktivio.core.utils.BaseRequest
 import com.bangkit.aktivio.core.utils.Firebase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +13,7 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlin.coroutines.resume
 
-class AuthRepository(private val userPreferencesRepository: UserPreferencesRepository) : IAuthRepository {
+class AuthRepository(private val apiService: ApiService) : IAuthRepository {
     private suspend fun createUserWithEmailAndPassword(
         email: String,
         password: String
@@ -66,15 +68,17 @@ class AuthRepository(private val userPreferencesRepository: UserPreferencesRepos
             try {
                 val result = signInWithEmailAndPassword(userItem.email!!, userItem.password!!)
                 emit(result)
-                val user = Firebase.auth.currentUser
-                val token = user?.getIdToken(true)?.result?.token
-                runBlocking {
-                    userPreferencesRepository.setToken(token!!)
-                }
             } catch (e: Exception) {
                 emit(Resource.Error(e.message.toString()))
             }
         }
+    }
+
+    override suspend fun saveRegisterData(
+        userItem: UserItem,
+        token: String
+    ): Flow<Resource<String>> {
+        return BaseRequest.send(apiService::saveRegisterData, userItem, token)
     }
 
 

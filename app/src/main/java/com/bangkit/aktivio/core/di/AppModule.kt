@@ -19,8 +19,8 @@ object AppModule {
 
     @Singleton
     @Provides
-    fun proviceAuthRepository(userPreferencesRepository: UserPreferencesRepository): AuthRepository {
-        return AuthRepository(userPreferencesRepository)
+    fun proviceAuthRepository(apiService: ApiService): AuthRepository {
+        return AuthRepository(apiService)
     }
 
     @Singleton

@@ -11,4 +11,5 @@ interface IAuthRepository {
 
     suspend fun signIn(userItem: UserItem) : Flow<Resource<Unit>>
 
+    suspend fun saveRegisterData(userItem: UserItem, token: String): Flow<Resource<String>>
 }

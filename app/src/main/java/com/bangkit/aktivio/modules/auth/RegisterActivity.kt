@@ -20,15 +20,21 @@ import androidx.core.widget.doOnTextChanged
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.data.Resource
 import com.bangkit.aktivio.core.data.remote.model.UserItem
+import com.bangkit.aktivio.core.data.remote.source.UserRepository
 import com.bangkit.aktivio.core.domain.model.UserModel
 import com.bangkit.aktivio.core.types.ValidationRules
+import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.core.utils.FormValidator
 import com.bangkit.aktivio.core.utils.ValidationHelper
 import com.bangkit.aktivio.core.utils.Extensions.toast
+import com.bangkit.aktivio.core.utils.Firebase
+import com.bangkit.aktivio.core.utils.Firebase.auth
 import com.bangkit.aktivio.databinding.ActivityRegisterBinding
 import com.bangkit.aktivio.modules.survey.SurveyActivity
+import com.bangkit.aktivio.modules.survey.WelcomeActivity
 import dagger.hilt.android.AndroidEntryPoint
 import www.sanju.motiontoast.MotionToastStyle
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class RegisterActivity : AppCompatActivity() {
@@ -49,6 +55,7 @@ class RegisterActivity : AppCompatActivity() {
 
     private fun initLogin() {
         with(binding) {
+            cbTerms.text = "I had read and agree with Aktivio\n<red>Terms Conditions and Privacy Policy.<red>".applyRedColorToText(this@RegisterActivity)
             val spannableString = SpannableString(btnLogin.text)
             val clickableSpan = object : ClickableSpan() {
                 override fun onClick(widget: View) {
@@ -87,29 +94,41 @@ class RegisterActivity : AppCompatActivity() {
             )
             FormValidator.setupFormValidation(forms, validationRules, btnRegister)
             btnRegister.setOnClickListener {
-                val user = UserItem(
-                    email = etEmail.text.toString(),
-                    displayName = etUsername.text.toString(),
-                    password = etPassword.text.toString()
-                )
-                viewModel.signUp(user).observe(this@RegisterActivity)
-                {
-                    when(it){
-                        is Resource.Error -> {
-                            showLoading(false)
-                            it.message?.let { it1 -> toast("There is an Error 😥",
-                                it1, MotionToastStyle.ERROR) }
-                        }
-                        is Resource.Loading -> {
-                            showLoading(true)
-                        }
-                        is Resource.Success -> {
-                            showLoading(false)
-                            toast("Success 🥳", "Account successfully created", MotionToastStyle.SUCCESS)
-                            val intent = Intent(this@RegisterActivity, SurveyActivity::class.java)
-                            startActivity(intent)
+                if(cbTerms.isChecked) {
+                    val user = UserItem(
+                        email = etEmail.text.toString(),
+                        displayName = etUsername.text.toString(),
+                        password = etPassword.text.toString()
+                    )
+                    viewModel.signUp(user).observe(this@RegisterActivity)
+                    {
+                        when(it){
+                            is Resource.Error -> {
+                                showLoading(false)
+                                it.message?.let { it1 -> toast("There is an Error 😥",
+                                    it1, MotionToastStyle.ERROR) }
+                            }
+                            is Resource.Loading -> {
+                                showLoading(true)
+                            }
+                            is Resource.Success -> {
+                                showLoading(false)
+                                toast("Success 🥳", "Account successfully created", MotionToastStyle.SUCCESS)
+                                val intent = Intent(this@RegisterActivity, WelcomeActivity::class.java)
+                                val userModel = UserModel(
+                                    email = user.email,
+                                    displayName = user.displayName
+                                )
+                                intent.putExtras(Bundle().apply {
+                                    putParcelable("user", userModel)
+                                })
+                                startActivity(intent)
+                                finish()
+                            }
                         }
                     }
+                } else {
+                    toast("Warning 😞","Please check the terms and conditions", MotionToastStyle.WARNING)
                 }
             }
         }

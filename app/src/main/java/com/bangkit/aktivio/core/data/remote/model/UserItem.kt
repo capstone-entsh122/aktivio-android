@@ -22,7 +22,7 @@ data class UserItem (
     val age: Int? = null,
 
     @field:SerializedName("location")
-    val location: String? = null,
+    val location: LocationItem? = null,
 
     @field:SerializedName("equipment")
     val equipment: String? = null,
