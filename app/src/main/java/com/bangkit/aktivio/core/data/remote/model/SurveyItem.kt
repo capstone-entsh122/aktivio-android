@@ -9,17 +9,14 @@ data class SurveyItem(
     @field:SerializedName("age")
     val age: Int? = null,
 
-    @field:SerializedName("location")
-    val location: String? = null,
-
     @field:SerializedName("equipment")
     val equipment: String? = null,
 
     @field:SerializedName("motivation")
-    val motivation: String? = null,
+    val motivation: List<String>? = null,
 
     @field:SerializedName("availableTime")
-    val availableTime: Int? = null,
+    val availableTime: String? = null,
 
     @field:SerializedName("fitnessLevel")
     val fitnessLevel: String? = null,

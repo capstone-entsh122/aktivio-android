@@ -2,7 +2,6 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.Aktivio" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/red500</item>
-        <item name="colorPrimaryContainer">@color/red500</item>
         <item name="colorPrimaryVariant">@color/red500</item>
         <item name="colorOnPrimary">@android:color/white</item>
         <item name="progressBarStyle">@color/red500</item>
@@ -15,14 +14,9 @@
         <item name="boxCornerRadiusBottomEnd">10dp</item>
     </style>
 
-    <style name="bottomNavigation" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+    <style name="bottomNavigation">
         <item name="itemIconTint">@drawable/bottom_navbar</item>
         <item name="itemTextColor">@drawable/bottom_navbar</item>
-        <item name="android:width">@dimen/m3_bottom_nav_item_active_indicator_width</item>
-        <item name="android:height">@dimen/m3_bottom_nav_item_active_indicator_height</item>
-        <item name="marginHorizontal">@dimen/m3_bottom_nav_item_active_indicator_margin_horizontal</item>
-        <item name="shapeAppearance">@style/bottomNavigation.shape</item>
-        <item name="android:color">@color/red_50</item>
     </style>
 
     <style name="Theme.Aktivio" parent="Base.Theme.Aktivio" />
@@ -33,10 +27,28 @@
         <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
+    <style name="TextDurationCard">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
     <style name="TitleTextSurvey">
         <item name="android:textSize">28sp</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TitleTextResult">
+        <item name="android:textSize">21sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="TitleText">
+        <item name="android:textSize">24sp</item>
+        <item name="android:textColor">@color/text</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
     <style name="DescTextSurvey">
@@ -55,6 +67,18 @@
         <item name="android:textSize">12sp</item>
         <item name="android:textColor">@color/text</item>
         <item name="android:fontFamily">@font/poppins</item>
+    </style>
+
+    <style name="ButtonTextSmall">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:fontFamily">@font/poppins_semibold</item>
+    </style>
+
+    <style name="ButtonTextSmallDark">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/red_500</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
     </style>
 
     <style name="ButtonTextLight">

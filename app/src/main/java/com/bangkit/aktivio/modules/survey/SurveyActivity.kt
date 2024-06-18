@@ -86,22 +86,26 @@ class SurveyActivity : AppCompatActivity() {
                             }
                         },
                         onSurveySubmit = { data ->
-                              startActivity(Intent(this@SurveyActivity, LoadingActivity::class.java))
-//                            updateUserPref(data).observe(this@SurveyActivity){result ->
-//                                when(result){
-//                                    is Resource.Error -> {
-//                                        showLoading(false)
-//                                        toast("There is an Error 😥",result.message.toString(), MotionToastStyle.ERROR)
-//                                    }
-//                                    is Resource.Loading -> {
-//                                        showLoading(true)
-//                                    }
-//                                    is Resource.Success -> {
-//                                        showLoading(false)
-//                                        toast("Success 🥳","Survey successfully submitted", MotionToastStyle.SUCCESS)
-//                                    }
-//                                }
-//                            }
+                            setUserPref(data).observe(this@SurveyActivity){result ->
+                                when(result){
+                                    is Resource.Error -> {
+                                        showLoading(false)
+                                        toast("There is an Error 😥",result.message.toString(), MotionToastStyle.ERROR)
+                                    }
+                                    is Resource.Loading -> {
+                                        showLoading(true)
+                                    }
+                                    is Resource.Success -> {
+                                        showLoading(false)
+                                        toast("Success 🥳","Data successfully submitted", MotionToastStyle.SUCCESS)
+                                        startActivity(Intent(this@SurveyActivity, LoadingActivity::class.java))
+                                    }
+                                    else -> {
+                                        showLoading(false)
+
+                                    }
+                                }
+                            }
                         }
                     )
                 }
@@ -116,7 +120,7 @@ class SurveyActivity : AppCompatActivity() {
                     tvTitle.text = it.question.applyRedColorToText(this@SurveyActivity)
                     tvDesc.text = it.description
                     LayoutBuilder.build(llOptions, it, layoutInflater,
-                        onInit = { value,cardView, mappedView, singleView ->
+                        onInit = { field, value,cardView, mappedView, singleView ->
                         user.observe(this@SurveyActivity){ u ->
                             cardView.strokeColor = if (u[it.field] == value) {
                                 resources.getColor(R.color.red_500, null)
@@ -136,17 +140,17 @@ class SurveyActivity : AppCompatActivity() {
                                     singleView?.isChecked = u[it.field] == value
                                 }
                             }
-                            btnNext.isEnabled = u[it.field] != null
+                            btnNext.isEnabled = u[field] != null
                             btnNext.setCardBackgroundColor(
-                                if (u[it.field] != null) {
+                                if (u[field] != null) {
                                     resources.getColor(R.color.red_500, null)
                                 } else {
                                     resources.getColor(R.color.border, null)
                                 }
                             )
                         }
-                    }, onSelected = { value ->
-                        addData(it.field, value)
+                    }, onSelected = { field, value ->
+                        addData(field, value)
                             getData()
                     })
                     if (it.type == QuestionType.SINGLE_BOX) {

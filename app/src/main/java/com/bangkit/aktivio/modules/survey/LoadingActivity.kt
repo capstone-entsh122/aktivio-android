@@ -29,7 +29,6 @@ class LoadingActivity : AppCompatActivity() {
         }
 
         // loading for 3 second and move activity
-
         with(binding){
             Glide.with(this@LoadingActivity)
                 .asGif()

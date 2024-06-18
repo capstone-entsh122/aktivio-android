@@ -5,6 +5,289 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".modules.result.PlanResultActivity">
+    tools:context=".modules.result.PlanResultActivity"
+    android:background="@drawable/bg_default"
+    >
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="30dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TitleText"
+                android:text="Resma's Plan"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="Exercise Recommendation"
+                style="@style/AnswerTextSurvey"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvExercise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="@color/border"
+                app:cardCornerRadius="10dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp">
+
+                    <ImageView
+                        android:layout_width="160dp"
+                        android:layout_height="170dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:src="@drawable/img_running" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:gravity="end"
+                        android:padding="10dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_run"
+                            />
+
+                        <TextView
+                            android:layout_width="90dp"
+                            android:layout_height="wrap_content"
+                            style="@style/TitleTextResult"
+                            android:textStyle="italic"
+                            android:layout_marginTop="16dp"
+                            android:text="Running" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="textEnd"
+                            style="@style/SubtitleTextSurvey"
+                            android:text="Slow paced running help\nto gain your endurance "
+                            />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            style="@style/ButtonTextSmall"
+                            android:layout_marginTop="@dimen/dimen_4"
+                            android:text="View Details"/>
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="Exercise Duration"
+                style="@style/AnswerTextSurvey"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDuration"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="@color/border"
+                app:cardCornerRadius="10dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        >
+                        
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_date"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dimen_8"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textStart"
+                                style="@style/TextDurationCard"
+                                android:text="15 min twice a week"
+                                />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textStart"
+                                style="@style/SubtitleTextSurvey"
+                                android:text="Every Sunday and Wednesday"
+                                />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    
+                    <ImageView
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:src="@drawable/ic_btn_edit"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_16"
+                android:text="Dietary Recommendation"
+                style="@style/AnswerTextSurvey"/>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cvDietary"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_8"
+                app:cardBackgroundColor="@color/white"
+                app:strokeColor="@color/border"
+                app:cardCornerRadius="10dp"
+                >
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="20dp"
+                    >
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        >
+
+                        <ImageView
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:src="@drawable/ic_dietary"
+                            android:layout_gravity="center"
+                            />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginStart="@dimen/dimen_8"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textAlignment="textStart"
+                                style="@style/TextDurationCard"
+                                android:text="You need 330 kkal/day"
+                                />
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="wrap_content"
+                                android:layout_height="30dp"
+                                app:strokeColor="@color/transparent"
+                                app:cardBackgroundColor="@color/red_50"
+                                app:cardCornerRadius="100dp"
+                                >
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_gravity="center"
+                                    style="@style/ButtonTextSmallDark"
+                                    android:text="Scan Food Recommendation"
+                                    android:layout_marginHorizontal="@dimen/dimen_16"
+                                    />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <Button
+        android:id="@+id/btnHome"
+        style="@style/ButtonTextLight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_button_primary"
+        android:paddingVertical="12dp"
+        android:layout_margin="30dp"
+        android:text="Back to Home"
+        app:icon="@drawable/round_arrow_forward_24"
+        app:iconGravity="textStart"
+        app:iconPadding="8dp"
+        app:iconSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

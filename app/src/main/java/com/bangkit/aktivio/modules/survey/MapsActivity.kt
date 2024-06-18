@@ -1,7 +1,8 @@
-package com.bangkit.aktivio
+package com.bangkit.aktivio.modules.survey
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.bangkit.aktivio.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap

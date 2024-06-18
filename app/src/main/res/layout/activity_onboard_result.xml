@@ -23,7 +23,7 @@
         <ImageView
             android:id="@+id/iv_logo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="315dp"
             android:src="@drawable/img_plan_ready" />
 
         <TextView
@@ -46,7 +46,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="94dp"
             android:layout_marginTop="@dimen/dimen_16"
             android:src="@drawable/img_plan_widget"
             />

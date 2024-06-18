@@ -19,7 +19,7 @@ import com.google.android.material.checkbox.MaterialCheckBox
 import com.google.android.material.radiobutton.MaterialRadioButton
 
 object LayoutBuilder {
-    fun build(parent: LinearLayout, data: SurveyQuestion, layoutInflater: LayoutInflater, onInit: (Any?, MaterialCardView, Map<String, TextView>?, CompoundButton?) -> Unit, onSelected: (Any?) -> Unit){
+    fun build(parent: LinearLayout, data: SurveyQuestion, layoutInflater: LayoutInflater, onInit: (String, Any?, MaterialCardView, Map<String, TextView>?, CompoundButton?) -> Unit, onSelected: (String, Any?) -> Unit){
         data.apply{
             when(type){
                 QuestionType.DOUBLE_BOX -> {
@@ -32,9 +32,9 @@ object LayoutBuilder {
                         imageView.setImageResource(item.icon!!)
                         textView.text = item.title
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvDoubleBox)
-                        onInit(item.value,cardView, null, null)
+                        onInit(data.field,item.value,cardView, null, null)
                         itemView.setOnClickListener {
-                            onSelected(item.value)
+                            onSelected(data.field, item.value)
                         }
                     }
                 }
@@ -49,7 +49,7 @@ object LayoutBuilder {
                     mapView.getMapAsync { googleMap ->
                         var currentMarker: Marker? = null
                         val cardView: MaterialCardView = itemView.findViewById(R.id.cvSingleBox)
-                        onInit(null,cardView, mapOf(
+                        onInit(data.field,null,cardView, mapOf(
                             "location" to tvLocation
                         ), null)
                         googleMap.setOnMapClickListener { latLng ->
@@ -58,7 +58,7 @@ object LayoutBuilder {
                             currentMarker = googleMap.addMarker(MarkerOptions().position(latLng).title("Selected Location"))
                             tvLocation.text = GeoHelper.getAddressFromLocation(latLng.latitude, latLng.longitude, itemView.context)
                             btnSave.setOnClickListener {
-                                onSelected(mapOf(
+                                onSelected(data.field, mapOf(
                                     "location" to tvLocation.text.toString(),
                                     "lat" to latLng.latitude,
                                     "lng" to latLng.longitude
@@ -80,9 +80,9 @@ object LayoutBuilder {
                         tvTitle.text = item.title
                         tvSubtitle.text = item.description
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvTripleBox)
-                        onInit(item.value,cardView, null, null)
+                        onInit(data.field,item.value,cardView, null, null)
                         itemView.setOnClickListener {
-                            onSelected(item.value)
+                            onSelected(data.field, item.value)
                         }
                     }
                 }
@@ -94,9 +94,9 @@ object LayoutBuilder {
                         val checkBox : MaterialCheckBox = itemView.findViewById(R.id.cbSurvey)
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvCheckBox)
                         checkBox.text = item.title
-                        onInit(item.value,cardView, null, checkBox)
+                        onInit(data.field,item.value,cardView, null, checkBox)
                         checkBox.setOnClickListener {
-                            onSelected(item.value)
+                            onSelected(data.field, item.value)
                         }
                     }
                 }
@@ -108,9 +108,9 @@ object LayoutBuilder {
                         val radioButton : MaterialRadioButton = itemView.findViewById(R.id.rbSurvey)
                         val cardView : MaterialCardView = itemView.findViewById(R.id.cvRadioBox)
                         radioButton.text = item.title
-                        onInit(item.value,cardView, null, radioButton)
+                        onInit(data.field,item.value,cardView, null, radioButton)
                         radioButton.setOnClickListener {
-                            onSelected(item.value)
+                            onSelected(data.field, item.value)
                         }
                     }
                 }
@@ -126,11 +126,11 @@ object LayoutBuilder {
                         editText.hint = item.hint
                         imageView.setImageResource(item.icon!!)
                         tvTitle.text = item.title
-                        onInit(item.value,cardView, mapOf(
-                            data.field to editText
+                        onInit(item.field!!,item.value,cardView, mapOf(
+                            item.field to editText
                         ), null)
                         editText.setOnEditorActionListener { v, _, _ ->
-                            onSelected(v.text.toString())
+                            onSelected(item.field, v.text.toString())
                             // hide keyboard
                             false
                         }

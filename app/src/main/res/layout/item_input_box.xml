@@ -23,8 +23,8 @@
 
         <ImageView
             android:id="@+id/ivInput"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dimen_48"
+            android:layout_height="48dp"
             android:src="@drawable/ic_male"
             />
 
@@ -32,7 +32,7 @@
             android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="4dp"
             android:text="Enter your age here"
             style="@style/AnswerTextSurvey"
             />
@@ -42,7 +42,7 @@
             android:id="@+id/input_box"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="8dp"
             android:focusable="true"
             android:textColorHint="@color/border"
             app:boxBackgroundMode="outline"

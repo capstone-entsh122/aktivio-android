@@ -1,11 +1,18 @@
 package com.bangkit.aktivio.modules.profile
 
+import android.content.Intent
 import android.os.Bundle
+import android.provider.ContactsContract.Profile
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.bangkit.aktivio.R
+import androidx.fragment.app.viewModels
+import com.bangkit.aktivio.core.utils.Firebase
+import com.bangkit.aktivio.databinding.FragmentProfileBinding
+import com.bangkit.aktivio.modules.auth.LoginActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,10 +24,14 @@ private const val ARG_PARAM2 = "param2"
  * Use the [ProfileFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
+@AndroidEntryPoint
 class ProfileFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var _binding: FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+    private val viewModels: ProfileViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +45,25 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        _binding = FragmentProfileBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding){
+            btnLogout.setOnClickListener {
+                Firebase.auth.signOut()
+                viewModels.logout()
+                startActivity(Intent(requireContext(), LoginActivity::class.java))
+                requireActivity().finish()
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
     companion object {

@@ -16,11 +16,7 @@ import com.bangkit.aktivio.core.data.remote.model.SurveyItem
 import com.bangkit.aktivio.core.data.remote.model.UserItem
 import com.bangkit.aktivio.core.data.remote.source.UserRepository
 import com.bangkit.aktivio.core.domain.model.SurveyQuestion
-import com.bangkit.aktivio.core.domain.model.UserModel
-import com.bangkit.aktivio.core.utils.mapTo
-import com.bangkit.aktivio.core.utils.toDataClass
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.runBlocking
 import javax.inject.Inject
 
@@ -79,7 +75,7 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
         }
     }
 
-    fun updateUserPref(surveyItem: SurveyItem) : LiveData<Resource<Map<String, Any>>> {
+    fun setUserPref(surveyItem: SurveyItem) : LiveData<Resource<Map<String, Any>>> {
         return runBlocking {
             userRepository.updateUserPreferences(surveyItem).asLiveData()
         }
@@ -106,8 +102,20 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
             update()
         } else {
             try {
-                val surveyItem: SurveyItem = _user.value!!.mapTo()
-                onSurveySubmit(surveyItem)
+                val data = _user.value!!
+                onSurveySubmit(SurveyItem(
+                    gender = data["gender"].toString(),
+                    age = data["age"].toString().toInt(),
+                    equipment = data["equipment"].toString(),
+                    motivation = data["motivation"] as List<String>,
+                    availableTime = data["availableTime"].toString(),
+                    fitnessLevel = data["fitnessLevel"].toString(),
+                    placePreference = data["placePreference"].toString(),
+                    socialPreference = data["socialPreference"].toString(),
+                    diseaseHistory = data["diseaseHistory"] as List<String>,
+                    weight = data["weight"].toString().toInt(),
+                    height = data["height"].toString().toInt()
+                ))
             } catch (e: Exception) {
                 Log.e("SurveyViewModel", "Error creating sport plan", e)
             }

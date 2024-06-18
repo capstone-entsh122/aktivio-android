@@ -44,11 +44,12 @@
             android:value="AIzaSyADGv_DMl6SBKsUsyG290fSi7ef2zz-_Xc" />
 
         <activity
-            android:name=".MapsActivity"
+            android:name=".modules.survey.MapsActivity"
             android:exported="false"
             android:label="@string/title_activity_maps" />
         <activity
             android:name=".modules.survey.SurveyActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".modules.auth.RegisterActivity"

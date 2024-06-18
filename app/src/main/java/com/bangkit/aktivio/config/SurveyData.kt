@@ -44,6 +44,7 @@ object SurveyData {
                 options = listOf(
                     OptionModel(
                         id = 1,
+                        field = "age",
                         title = "Enter your age",
                         hint = "Age",
                         icon = R.drawable.ic_age
@@ -207,7 +208,7 @@ object SurveyData {
                 id = 8,
                 field = "placePreference",
                 type = QuestionType.DOUBLE_BOX,
-                question = "What is your exercise <red>preference place?<red>",
+                question = "What is your exercise\n<red>preference place?<red>",
                 description = "Please choose the option below",
                 options = listOf(
                     OptionModel(
@@ -229,7 +230,7 @@ object SurveyData {
                 id = 9,
                 field = "socialPreference",
                 type = QuestionType.DOUBLE_BOX,
-                question = "Do you prefer to <red>exercise alone?<red>",
+                question = "Do you prefer to\n<red>exercise alone?<red>",
                 description = "Please choose the option below",
                 options = listOf(
                     OptionModel(
@@ -251,7 +252,7 @@ object SurveyData {
                 id = 10,
                 field = "availableTime",
                 type = QuestionType.MULTI_RADIO,
-                question = "<red>How long<red> do you want to exercise?",
+                question = "<red>How long<red> do you\nwant to exercise?",
                 description = "Please choose the option below",
                 options = listOf(
                     OptionModel(
@@ -278,6 +279,30 @@ object SurveyData {
                         id = 5,
                         title = "> 60 minutes",
                         value = "> 60 menit",
+                    ),
+                )
+            ),
+            SurveyQuestion(
+                id = 11,
+                field = "2wh",
+                type = QuestionType.INPUT_BOX,
+                question = "Nearly there!" +
+                        "enter your\n<red>weight and height<red>",
+                description = "Please input on given field",
+                options = listOf(
+                    OptionModel(
+                        id = 1,
+                        field = "weight",
+                        title = "Enter your weight",
+                        hint = "Weight",
+                        icon = R.drawable.ic_weight
+                    ),
+                    OptionModel(
+                        id = 2,
+                        field = "height",
+                        title = "Enter your height",
+                        hint = "Height",
+                        icon = R.drawable.ic_height
                     ),
                 )
             ),

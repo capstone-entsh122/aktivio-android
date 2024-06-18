@@ -157,15 +157,16 @@ class LoginActivity : AppCompatActivity() {
                                     val token = tokenTask.result?.token
                                     if (token != null) {
                                         viewModel.saveToken(token)
+                                        toast("Success 😁","Account successfully logged in", MotionToastStyle.SUCCESS)
+                                        val intent = Intent(this@LoginActivity, SurveyActivity::class.java)
+                                        startActivity(intent)
+                                        finish()
                                     }
-                                    finish()
                                 } else {
                                     toast("Error 😞","Failed to get token", MotionToastStyle.ERROR)
                                 }
                             }
-                            toast("Success 😁","Account successfully logged in", MotionToastStyle.SUCCESS)
-                            val intent = Intent(this@LoginActivity, SurveyActivity::class.java)
-                            startActivity(intent)
+
                         }
                     }
                 }

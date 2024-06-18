@@ -1,6 +1,7 @@
 package com.bangkit.aktivio.core.utils
 
 
+import kotlin.reflect.KClass
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.primaryConstructor
 
@@ -43,3 +44,35 @@ inline fun <reified T : Any> Map<String, Any?>.toDataClass(): T {
 
     return constructor.callBy(args)
 }
+
+inline fun <reified T : Any> Map<String, Any?>.toFlexClass(): T {
+    val constructor = T::class.primaryConstructor
+        ?: throw IllegalArgumentException("No primary constructor found for ${T::class}")
+
+    val args = constructor.parameters.associateWith { param ->
+        val value = this[param.name]
+
+        // Perform type conversion if necessary
+        if (value != null) {
+            convertValue(value, param.type.classifier as KClass<*>)
+        } else {
+            value
+        }
+    }
+
+    return constructor.callBy(args)
+}
+
+fun convertValue(value: Any, targetType: KClass<*>): Any {
+    return when (targetType) {
+        String::class -> value.toString()
+        Int::class -> value.toString().toIntOrNull() ?: throw IllegalArgumentException("Cannot convert $value to Int")
+        Double::class -> value.toString().toDoubleOrNull() ?: throw IllegalArgumentException("Cannot convert $value to Double")
+        Float::class -> value.toString().toFloatOrNull() ?: throw IllegalArgumentException("Cannot convert $value to Float")
+        Long::class -> value.toString().toLongOrNull() ?: throw IllegalArgumentException("Cannot convert $value to Long")
+        Boolean::class -> value.toString().toBoolean()
+        // Add more type conversions as needed
+        else -> throw IllegalArgumentException("Unsupported type: $targetType")
+    }
+}
+

@@ -28,6 +28,7 @@
     <color name="red_300">#f09998</color>
     <color name="red_400">#ed8585</color>
     <color name="red_500">#e86766</color>
+    <color name="red_500_alpha50">#11e86766</color>
     <color name="red_600">#d35e5d</color>
     <color name="red_700">#a54948</color>
     <color name="red_800">#803938</color>

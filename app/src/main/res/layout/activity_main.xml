@@ -25,7 +25,8 @@
         app:itemActiveIndicatorStyle="@style/bottomNavigation"
         app:labelVisibilityMode="labeled"
         app:itemPaddingBottom="20dp"
-        android:background="@color/white"
+        app:itemBackground="@drawable/bottom_nav_item_bg"
+        android:background="@drawable/bg_navbar"
         style="@style/bottomNavigation"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
