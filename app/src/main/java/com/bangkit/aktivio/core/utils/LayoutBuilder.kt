@@ -1,5 +1,6 @@
 package com.bangkit.aktivio.core.utils
 
+import android.content.pm.PackageManager
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.Button
@@ -8,9 +9,11 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.config.QuestionType
 import com.bangkit.aktivio.core.domain.model.SurveyQuestion
+import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapView
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
@@ -45,8 +48,15 @@ object LayoutBuilder {
                     val mapView: MapView = itemView.findViewById(R.id.mapView)
                     val tvLocation: TextView = itemView.findViewById(R.id.tvLocation)
                     val btnSave: Button = itemView.findViewById(R.id.btnSave)
+                    val currentLatLong = GeoHelper.getCurrentLatLong(itemView.context)
                     mapView.onCreate(null)
                     mapView.getMapAsync { googleMap ->
+                        googleMap.uiSettings.isZoomControlsEnabled = true
+                        googleMap.uiSettings.isIndoorLevelPickerEnabled = true
+                        googleMap.uiSettings.isCompassEnabled = true
+                        googleMap.uiSettings.isMapToolbarEnabled = true
+                        googleMap.uiSettings.isMyLocationButtonEnabled = true
+                        googleMap.moveCamera(CameraUpdateFactory.newLatLng(currentLatLong))
                         var currentMarker: Marker? = null
                         val cardView: MaterialCardView = itemView.findViewById(R.id.cvSingleBox)
                         onInit(data.field,null,cardView, mapOf(
