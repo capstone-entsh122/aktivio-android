@@ -62,21 +62,21 @@ object SurveyData {
                         id = 1,
                         title = "Good Condition",
                         description = "You’re frequently doing exercise or physical activity",
-                        value = "good",
+                        value = "Good",
                         icon = R.drawable.ic_good_condition
                     ),
                     OptionModel(
                         id = 2,
                         title = "Average Condition",
                         description = "You’re doing exercise or physical activity but not consistently",
-                        value = "average",
+                        value = "Average",
                         icon = R.drawable.ic_avg_condition
                     ),
                     OptionModel(
                         id = 3,
                         title = "Unfit Condition",
                         description = "You’re rarely or maybe never doing exercise or physical activity",
-                        value = "unfit",
+                        value = "Unfit",
                         icon = R.drawable.ic_low_condition
                     ),
                 )
@@ -214,13 +214,13 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "Outdoor",
-                        value = "luar rumah",
+                        value = "luar",
                         icon = R.drawable.ic_outdoor
                     ),
                     OptionModel(
                         id = 2,
                         title = "Indoor",
-                        value = "rumah",
+                        value = "dalam",
                         icon = R.drawable.ic_indoor
                     )
 
@@ -236,13 +236,13 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "Yes, alone",
-                        value = "ya",
+                        value = "sendiri",
                         icon = R.drawable.ic_alone
                     ),
                     OptionModel(
                         id = 2,
                         title = "No, I’d prefer with others",
-                        value = "tidak",
+                        value = "dengan orang lain",
                         icon = R.drawable.ic_others
                     )
 
@@ -258,7 +258,7 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         title = "< 15 minutes",
-                        value = "< 15 menit",
+                        value = "<15 menit",
                     ),
                     OptionModel(
                         id = 2,
@@ -278,7 +278,7 @@ object SurveyData {
                     OptionModel(
                         id = 5,
                         title = "> 60 minutes",
-                        value = "> 60 menit",
+                        value = ">60 menit",
                     ),
                 )
             ),
@@ -286,8 +286,7 @@ object SurveyData {
                 id = 11,
                 field = "2wh",
                 type = QuestionType.INPUT_BOX,
-                question = "Nearly there!" +
-                        "enter your\n<red>weight and height<red>",
+                question = "Nearly there! enter your\n<red>weight and height<red>",
                 description = "Please input on given field",
                 options = listOf(
                     OptionModel(

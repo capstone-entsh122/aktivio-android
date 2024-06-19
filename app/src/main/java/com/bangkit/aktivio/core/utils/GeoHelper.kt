@@ -3,6 +3,7 @@ package com.bangkit.aktivio.core.utils
 import android.content.Context
 import android.location.Address
 import android.location.Geocoder
+import com.google.android.gms.maps.model.LatLng
 import java.io.IOException
 import java.util.Locale
 
@@ -22,7 +23,7 @@ object GeoHelper {
         return addressText
     }
 
-    fun getCurrentLatLong(context: Context): Pair<Double, Double> {
+    fun getCurrentLatLong(context: Context): LatLng {
         val geocoder = Geocoder(context, Locale.getDefault())
         var latitude = 0.0
         var longitude = 0.0
@@ -36,6 +37,6 @@ object GeoHelper {
         } catch (e: IOException) {
             e.printStackTrace()
         }
-        return Pair(latitude, longitude)
+        return LatLng(latitude, longitude)
     }
 }
