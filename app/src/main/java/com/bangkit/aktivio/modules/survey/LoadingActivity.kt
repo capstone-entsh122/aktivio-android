@@ -2,11 +2,13 @@ package com.bangkit.aktivio.modules.survey
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.domain.model.RecommendationModel
 import com.bangkit.aktivio.databinding.ActivityLoadingBinding
 import com.bangkit.aktivio.modules.result.OnboardResultActivity
 import com.bangkit.aktivio.modules.result.PlanResultActivity
@@ -27,6 +29,9 @@ class LoadingActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        // get data from putextras parcelable with key "data"
+         val data = intent.getParcelableExtra<RecommendationModel>("data")
+        Log.d("LoadingActivity", data.toString())
 
         // loading for 3 second and move activity
         with(binding){
@@ -36,7 +41,11 @@ class LoadingActivity : AppCompatActivity() {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(ivAnim)
             root.postDelayed({
-                startActivity(Intent(this@LoadingActivity, OnboardResultActivity::class.java))
+                val intent = Intent(this@LoadingActivity, OnboardResultActivity::class.java)
+                intent.putExtras(Bundle().apply {
+                    putParcelable("data", data)
+                })
+                startActivity(intent)
             }, 5000)
         }
     }

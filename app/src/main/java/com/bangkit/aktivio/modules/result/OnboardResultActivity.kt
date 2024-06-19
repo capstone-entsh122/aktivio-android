@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.domain.model.RecommendationModel
 import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.databinding.ActivityOnboardResultBinding
 
@@ -24,11 +25,16 @@ class OnboardResultActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val data = intent.getParcelableExtra<RecommendationModel>("data")
 
         with(binding){
-            tvTitle.text = "Your Plan is Ready\n<red>Let’s Start!<red>".applyRedColorToText(this@OnboardResultActivity)
+            tvTitle.text = getString(R.string.onboardresultplan).applyRedColorToText(this@OnboardResultActivity)
             btnSee.setOnClickListener {
-                startActivity(Intent(this@OnboardResultActivity, PlanResultActivity::class.java))
+                val intent = Intent(this@OnboardResultActivity, PlanResultActivity::class.java)
+                intent.putExtras(Bundle().apply {
+                    putParcelable("data", data)
+                })
+                startActivity(intent)
                 finish()
             }
         }

@@ -1,24 +1,28 @@
 package com.bangkit.aktivio.modules.survey
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
-import com.bangkit.aktivio.config.QuestionType
+import com.bangkit.aktivio.core.types.QuestionType
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.domain.model.RecommendationModel
 import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.core.utils.LayoutBuilder
 import com.bangkit.aktivio.core.utils.Extensions.toast
-import com.bangkit.aktivio.core.utils.Firebase
+import com.bangkit.aktivio.core.utils.mapTo
 import com.bangkit.aktivio.databinding.ActivitySurveyBinding
+import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.MapView
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.runBlocking
 import www.sanju.motiontoast.MotionToastStyle
 
 @AndroidEntryPoint
@@ -27,6 +31,7 @@ class SurveyActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySurveyBinding
     private val viewModel: SurveyViewModel by viewModels()
     private var mapView: MapView? = null
+    private lateinit var googleMap: GoogleMap
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -82,10 +87,14 @@ class SurveyActivity : AppCompatActivity() {
                                         showLoading(false)
                                         toast("Success 🥳","Profile successfully updated", MotionToastStyle.SUCCESS)
                                     }
+                                    else -> {
+                                        showLoading(false)
+                                    }
                                 }
                             }
                         },
                         onSurveySubmit = { data ->
+                            showLoading(true)
                             setUserPref(data).observe(this@SurveyActivity){result ->
                                 when(result){
                                     is Resource.Error -> {
@@ -98,11 +107,20 @@ class SurveyActivity : AppCompatActivity() {
                                     is Resource.Success -> {
                                         showLoading(false)
                                         toast("Success 🥳","Data successfully submitted", MotionToastStyle.SUCCESS)
-                                        startActivity(Intent(this@SurveyActivity, LoadingActivity::class.java))
+                                        val sportRec = result.data!!
+                                        val recommendationData = RecommendationModel(
+                                            preferences = sportRec.preferences?.mapTo(),
+                                            sportPlan = sportRec.sportPlan?.mapTo(),
+                                            recommendedCaloriesNutritions = sportRec.recommendedCaloriesNutritions?.mapTo()
+                                        )
+                                        val intent = Intent(this@SurveyActivity, LoadingActivity::class.java)
+                                        intent.putExtras(Bundle().apply {
+                                            putParcelable("data", recommendationData)
+                                        })
+                                        startActivity(intent)
                                     }
                                     else -> {
                                         showLoading(false)
-
                                     }
                                 }
                             }
@@ -113,6 +131,28 @@ class SurveyActivity : AppCompatActivity() {
         }
     }
 
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                getMyLocation()
+            }
+        }
+
+    private fun getMyLocation() {
+        if (ContextCompat.checkSelfPermission(
+                this.applicationContext,
+                android.Manifest.permission.ACCESS_FINE_LOCATION
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
+            googleMap.isMyLocationEnabled = true
+        } else {
+            requestPermissionLauncher.launch(android.Manifest.permission.ACCESS_FINE_LOCATION)
+        }
+    }
+
+
     private fun initData() {
         with(binding) {
             viewModel.apply {
@@ -120,7 +160,7 @@ class SurveyActivity : AppCompatActivity() {
                     tvTitle.text = it.question.applyRedColorToText(this@SurveyActivity)
                     tvDesc.text = it.description
                     LayoutBuilder.build(llOptions, it, layoutInflater,
-                        onInit = { field, value,cardView, mappedView, singleView ->
+                        onInit = { field, value,cardView, mappedView, singleView, gMap ->
                         user.observe(this@SurveyActivity){ u ->
                             cardView.strokeColor = if (u[it.field] == value) {
                                 resources.getColor(R.color.red_500, null)
@@ -149,6 +189,10 @@ class SurveyActivity : AppCompatActivity() {
                                 }
                             )
                         }
+                            if (it.type == QuestionType.SINGLE_BOX) {
+                                googleMap = gMap!!
+                                getMyLocation()
+                            }
                     }, onSelected = { field, value ->
                         addData(field, value)
                             getData()

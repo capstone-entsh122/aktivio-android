@@ -1,4 +1,4 @@
-package com.bangkit.aktivio.config
+package com.bangkit.aktivio.core.types
 
 enum class QuestionType {
     DOUBLE_BOX,

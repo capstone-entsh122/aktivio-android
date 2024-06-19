@@ -7,15 +7,13 @@ import kotlinx.parcelize.Parcelize
 data class SurveyModel(
     val gender: String? = null,
 
-    val age: Int? = null,
-
-    val location: String? = null,
+    val age: Number? = null,
 
     val equipment: String? = null,
 
-    val motivation: String? = null,
+    val motivation: List<String>? = null,
 
-    val availableTime: Int? = null,
+    val availableTime: String? = null,
 
     val fitnessLevel: String? = null,
 
@@ -25,7 +23,7 @@ data class SurveyModel(
 
     val diseaseHistory: List<String>? = null,
 
-    val weight: Int? = null,
+    val weight: Number? = null,
 
-    val height: Int? = null
+    val height: Number? = null
 ) : Parcelable

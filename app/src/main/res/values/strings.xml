@@ -49,4 +49,7 @@
     <string name="dietary_title">Instantly Uncover Food Calories!</string>
     <string name="dietary_desc">Tap to Scan and Get Accurate Nutrition Information.</string>
     <string name="dietary_fragment">Dietary Fragment</string>
+    <string name="onboardresultplan"><![CDATA[Your Plan is Ready\n<red>Let’s Start!<red>]]></string>
+    <string name="resulttext">Here’s result, Your <b>BMR</b> is</string>
+    <string name="have_you_doing_exercise_today">Have you doing exercise today?</string>
 </resources>

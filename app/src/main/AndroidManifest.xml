@@ -25,6 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aktivio"
+        tools:replace="android:appComponentFactory"
+        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         tools:targetApi="31">
         <activity
             android:name=".modules.dietary.CameraActivity"

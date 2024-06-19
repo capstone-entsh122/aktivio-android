@@ -1,6 +1,7 @@
 package com.bangkit.aktivio.core.domain.interfaces
 
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.data.remote.model.RecommendationItem
 import com.bangkit.aktivio.core.data.remote.model.SurveyItem
 import com.bangkit.aktivio.core.data.remote.model.UserItem
 import com.bangkit.aktivio.core.domain.model.CommunityModel
@@ -13,12 +14,9 @@ import java.io.File
 
 
 interface IUserRepository {
+    suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<RecommendationItem>>
 
-    // TODO: Change to fixed data class later
-    suspend fun setUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>>
-
-    // TODO: Change to fixed data class later
-    suspend fun updateUserPreferences(surveyItem: SurveyItem): Flow<Resource<Map<String, Any>>>
+    suspend fun updateUserPreferences(surveyItem: SurveyItem): Flow<Resource<RecommendationItem>>
 
     suspend fun getProfile(): Flow<Resource<UserModel>>
 

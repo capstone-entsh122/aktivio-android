@@ -3,6 +3,7 @@ package com.bangkit.aktivio.config
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.domain.model.OptionModel
 import com.bangkit.aktivio.core.domain.model.SurveyQuestion
+import com.bangkit.aktivio.core.types.QuestionType
 
 object SurveyData {
     fun getSurveyData() : List<SurveyQuestion> {

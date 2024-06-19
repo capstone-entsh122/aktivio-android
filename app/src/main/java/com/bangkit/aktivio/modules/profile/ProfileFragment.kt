@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import com.bangkit.aktivio.core.utils.Firebase
 import com.bangkit.aktivio.databinding.FragmentProfileBinding
 import com.bangkit.aktivio.modules.auth.LoginActivity
+import com.bangkit.aktivio.modules.survey.SurveyActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -57,6 +58,9 @@ class ProfileFragment : Fragment() {
                 viewModels.logout()
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 requireActivity().finish()
+            }
+            btnSurvey.setOnClickListener {
+                startActivity(Intent(requireContext(), SurveyActivity::class.java))
             }
         }
     }

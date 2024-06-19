@@ -7,7 +7,7 @@ data class SurveyItem(
     val gender: String? = null,
 
     @field:SerializedName("age")
-    val age: Int? = null,
+    val age: Number? = null,
 
     @field:SerializedName("equipment")
     val equipment: String? = null,
@@ -31,8 +31,8 @@ data class SurveyItem(
     val diseaseHistory: List<String>? = null,
 
     @field:SerializedName("weight")
-    val weight: Int? = null,
+    val weight: Number? = null,
 
     @field:SerializedName("height")
-    val height: Int? = null
+    val height: Number? = null
 )

@@ -1,6 +1,14 @@
 package com.bangkit.aktivio.core.data.remote.model
 
+import com.google.gson.annotations.SerializedName
+
 data class RecommendationItem(
-    val preferences: SurveyItem,
-    val sportPlan: PlanItem
+    @field:SerializedName("preferences")
+    val preferences: SurveyItem? = null,
+
+    @field:SerializedName("sportPlan")
+    val sportPlan: SportPlanItem? = null,
+
+    @field:SerializedName("recommendedCaloriesNutritions")
+    val recommendedCaloriesNutritions: NutritionItem? = null
 )

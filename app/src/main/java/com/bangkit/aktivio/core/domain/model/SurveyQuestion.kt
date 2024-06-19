@@ -1,6 +1,6 @@
 package com.bangkit.aktivio.core.domain.model
 
-import com.bangkit.aktivio.config.QuestionType
+import com.bangkit.aktivio.core.types.QuestionType
 
 data class SurveyQuestion(
     val id: Int,

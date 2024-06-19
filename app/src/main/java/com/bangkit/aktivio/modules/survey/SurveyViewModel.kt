@@ -1,17 +1,15 @@
 package com.bangkit.aktivio.modules.survey
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import com.bangkit.aktivio.config.QuestionType
+import com.bangkit.aktivio.core.types.QuestionType
 import com.bangkit.aktivio.config.SurveyData
 import com.bangkit.aktivio.core.data.Resource
-import com.bangkit.aktivio.core.data.local.source.UserPreferencesRepository
 import com.bangkit.aktivio.core.data.remote.model.LocationItem
+import com.bangkit.aktivio.core.data.remote.model.RecommendationItem
 import com.bangkit.aktivio.core.data.remote.model.SurveyItem
 import com.bangkit.aktivio.core.data.remote.model.UserItem
 import com.bangkit.aktivio.core.data.remote.source.UserRepository
@@ -75,9 +73,9 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
         }
     }
 
-    fun setUserPref(surveyItem: SurveyItem) : LiveData<Resource<Map<String, Any>>> {
+    fun setUserPref(surveyItem: SurveyItem) : LiveData<Resource<RecommendationItem>> {
         return runBlocking {
-            userRepository.updateUserPreferences(surveyItem).asLiveData()
+            userRepository.setUserPreferences(surveyItem).asLiveData()
         }
     }
 

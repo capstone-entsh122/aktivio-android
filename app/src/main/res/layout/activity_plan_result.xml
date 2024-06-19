@@ -20,6 +20,7 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/TitleText"
@@ -49,6 +50,7 @@
                     android:layout_margin="10dp">
 
                     <ImageView
+                        android:id="@+id/ivExercise"
                         android:layout_width="160dp"
                         android:layout_height="170dp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -73,27 +75,36 @@
                             />
 
                         <TextView
-                            android:layout_width="90dp"
+                            android:id="@+id/tvExerciseName"
+                            android:layout_width="120dp"
                             android:layout_height="wrap_content"
                             style="@style/TitleTextResult"
                             android:textStyle="italic"
                             android:layout_marginTop="16dp"
-                            android:text="Running" />
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:textAlignment="textEnd"
+                            android:text="HAHAHAHAHAHA"
+                            />
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/tvExerciseDesc"
+                            android:layout_width="160dp"
                             android:layout_height="wrap_content"
                             android:textAlignment="textEnd"
                             style="@style/SubtitleTextSurvey"
-                            android:text="Slow paced running help\nto gain your endurance "
+                            android:maxLines="2"
+                            android:ellipsize="end"
+                            android:text="Slow paced running help to gain your endurance "
                             />
 
                         <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnShowMore"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             style="@style/ButtonTextSmall"
                             android:layout_marginTop="@dimen/dimen_4"
-                            android:text="View Details"/>
+                            android:text="Show More"/>
 
                     </LinearLayout>
 
@@ -101,6 +112,146 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
+
+            <LinearLayout
+                android:id="@+id/llAdditionalExercise"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/dimen_4"
+                >
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvSecondExercise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/border"
+                    app:cardCornerRadius="10dp"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+
+                            <ImageView
+                                android:id="@+id/ivSecondEx"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/ic_date"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/dimen_8"
+                                >
+
+                                <TextView
+                                    android:id="@+id/tvSecondTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textStart"
+                                    style="@style/TextDurationCard"
+                                    android:text="15 min twice a week"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/tvSecondDesc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textStart"
+                                    style="@style/SubtitleTextSurvey"
+                                    android:text="Alternative exercise to running"
+                                    />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/cvThirdExercise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dimen_8"
+                    app:cardBackgroundColor="@color/white"
+                    app:strokeColor="@color/border"
+                    app:cardCornerRadius="10dp"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+
+                            <ImageView
+                                android:id="@+id/ivThirdEx"
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/ic_date"
+                                />
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/dimen_8"
+                                >
+
+                                <TextView
+                                    android:id="@+id/tvThirdTitle"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textStart"
+                                    style="@style/TextDurationCard"
+                                    android:text="15 min twice a week"
+                                    />
+
+                                <TextView
+                                    android:id="@+id/tvThirdDesc"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textStart"
+                                    style="@style/SubtitleTextSurvey"
+                                    android:text="Alternative exercise to running"
+                                    />
+
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -133,7 +284,7 @@
                         app:layout_constraintTop_toTopOf="parent"
                         app:layout_constraintBottom_toBottomOf="parent"
                         >
-                        
+
                         <ImageView
                             android:layout_width="48dp"
                             android:layout_height="48dp"
@@ -149,6 +300,7 @@
                             >
 
                             <TextView
+                                android:id="@+id/tvDuration"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="textStart"
@@ -157,6 +309,7 @@
                                 />
 
                             <TextView
+                                android:id="@+id/tvDurationDesc"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textAlignment="textStart"
@@ -168,15 +321,15 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                    
-                    <ImageView
-                        android:layout_width="36dp"
-                        android:layout_height="36dp"
-                        android:src="@drawable/ic_btn_edit"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        />
+
+<!--                    <ImageView-->
+<!--                        android:layout_width="36dp"-->
+<!--                        android:layout_height="36dp"-->
+<!--                        android:src="@drawable/ic_btn_edit"-->
+<!--                        app:layout_constraintEnd_toEndOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                        />-->
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -186,7 +339,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/dimen_16"
-                android:text="Dietary Recommendation"
+                android:text="Nutrition Recommendation"
                 style="@style/AnswerTextSurvey"/>
 
             <com.google.android.material.card.MaterialCardView
@@ -199,73 +352,377 @@
                 app:cardCornerRadius="10dp"
                 >
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="20dp"
+                    android:orientation="vertical"
                     >
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        >
 
-                        <ImageView
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
-                            android:src="@drawable/ic_dietary"
-                            android:layout_gravity="center"
-                            />
+                        >
 
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginStart="@dimen/dimen_8"
+                            android:orientation="horizontal"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             >
 
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textAlignment="textStart"
-                                style="@style/TextDurationCard"
-                                android:text="You need 330 kkal/day"
+                            <ImageView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:src="@drawable/ic_weight"
+                                android:layout_gravity="center"
                                 />
 
-                            <com.google.android.material.card.MaterialCardView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
-                                android:layout_height="30dp"
-                                app:strokeColor="@color/transparent"
-                                app:cardBackgroundColor="@color/red_50"
-                                app:cardCornerRadius="100dp"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_gravity="center_vertical"
+                                android:layout_marginStart="@dimen/dimen_8"
                                 >
 
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_gravity="center"
-                                    style="@style/ButtonTextSmallDark"
-                                    android:text="Scan Food Recommendation"
-                                    android:layout_marginHorizontal="@dimen/dimen_16"
+                                    android:textAlignment="textStart"
+                                    style="@style/TextDurationCard"
+                                    android:text="@string/resulttext"
                                     />
 
-                            </com.google.android.material.card.MaterialCardView>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textAlignment="textStart"
+                                    style="@style/SubtitleTextSurvey"
+                                    android:textStyle="italic"
+                                    android:text="*BMR = Basal Metabolic Rate"
+                                    />
 
+                            </LinearLayout>
 
                         </LinearLayout>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="52dp"
+                            android:layout_height="52dp"
+                            app:cardCornerRadius="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            >
+
+                            <TextView
+                                android:id="@+id/tvBMR"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1200"
+                                android:layout_gravity="center"
+                                style="@style/MainTextCircle"
+                                />
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="vertical"
+                      >
+                      <androidx.constraintlayout.widget.ConstraintLayout
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/dimen_16"
+                          >
+
+                          <TextView
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="Calories"
+                              style="@style/TitleTextCard"
+                              app:layout_constraintStart_toStartOf="parent"
+                              app:layout_constraintTop_toTopOf="parent"
+                              app:layout_constraintBottom_toBottomOf="parent"
+                              />
+
+                          <TextView
+                              android:id="@+id/tvKaloriValue"
+                              android:layout_width="wrap_content"
+                              android:layout_height="wrap_content"
+                              android:text="100g"
+                              style="@style/TitleTextCard"
+                              app:layout_constraintEnd_toEndOf="parent"
+                              app:layout_constraintTop_toTopOf="parent"
+                              app:layout_constraintBottom_toBottomOf="parent"
+                              />
+
+                      </androidx.constraintlayout.widget.ConstraintLayout>
+
+                      <com.jaygoo.widget.RangeSeekBar
+                          android:id="@+id/kaloriRange"
+                          android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:layout_marginTop="@dimen/dimen_8"
+                          app:rsb_mode="single"
+                          app:rsb_tick_mark_layout_gravity="bottom"
+                          app:rsb_tick_mark_text_margin="15dp"
+                          app:rsb_progress_color="@color/red_500"
+                          app:rsb_min_interval="50"
+                          app:rsb_thumb_drawable="@drawable/thumb_range"
+                          app:rsb_indicator_show_mode="alwaysShow"
+                          app:rsb_indicator_height="30dp"
+                          app:rsb_indicator_width="50dp"
+                          app:rsb_indicator_margin="5dp"
+                          app:rsb_indicator_background_color="@color/red_500"
+                          app:rsb_tick_mark_mode="number"
+                          app:rsb_tick_mark_text_array="@array/bmrRange"
+                          />
+
+                  </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Protein"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvProteinValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100g-200g"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.jaygoo.widget.RangeSeekBar
+                            android:id="@+id/proteinRange"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            app:rsb_mode="range"
+                            app:rsb_tick_mark_layout_gravity="bottom"
+                            app:rsb_tick_mark_text_margin="15dp"
+                            app:rsb_progress_color="@color/red_500"
+                            app:rsb_min_interval="50"
+                            app:rsb_thumb_drawable="@drawable/thumb_range"
+                            app:rsb_indicator_show_mode="alwaysShow"
+                            app:rsb_indicator_height="30dp"
+                            app:rsb_indicator_width="50dp"
+                            app:rsb_indicator_margin="5dp"
+                            app:rsb_indicator_background_color="@color/red_500"
+                            app:rsb_tick_mark_mode="number"
+                            app:rsb_tick_mark_text_array="@array/bmrRange"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Fat"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvLemakValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100g-200g"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.jaygoo.widget.RangeSeekBar
+                            android:id="@+id/lemakRange"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            app:rsb_mode="range"
+                            app:rsb_tick_mark_layout_gravity="bottom"
+                            app:rsb_tick_mark_text_margin="15dp"
+                            app:rsb_progress_color="@color/red_500"
+                            app:rsb_min_interval="50"
+                            app:rsb_thumb_drawable="@drawable/thumb_range"
+                            app:rsb_indicator_show_mode="alwaysShow"
+                            app:rsb_indicator_height="30dp"
+                            app:rsb_indicator_width="50dp"
+                            app:rsb_indicator_margin="5dp"
+                            app:rsb_indicator_background_color="@color/red_500"
+                            app:rsb_tick_mark_mode="number"
+                            app:rsb_tick_mark_text_array="@array/bmrRange"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Carbohydrate"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvKarboValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100g-200g"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.jaygoo.widget.RangeSeekBar
+                            android:id="@+id/karboRange"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            app:rsb_mode="range"
+                            app:rsb_tick_mark_layout_gravity="bottom"
+                            app:rsb_tick_mark_text_margin="15dp"
+                            app:rsb_progress_color="@color/red_500"
+                            app:rsb_min_interval="50"
+                            app:rsb_thumb_drawable="@drawable/thumb_range"
+                            app:rsb_indicator_show_mode="alwaysShow"
+                            app:rsb_indicator_height="30dp"
+                            app:rsb_indicator_width="50dp"
+                            app:rsb_indicator_margin="5dp"
+                            app:rsb_indicator_background_color="@color/red_500"
+                            app:rsb_tick_mark_mode="number"
+                            app:rsb_tick_mark_text_array="@array/bmrRange"
+                            />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        >
+                        <androidx.constraintlayout.widget.ConstraintLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_16"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Water"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintStart_toStartOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                            <TextView
+                                android:id="@+id/tvWaterValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="100g"
+                                style="@style/TitleTextCard"
+                                app:layout_constraintEnd_toEndOf="parent"
+                                app:layout_constraintTop_toTopOf="parent"
+                                app:layout_constraintBottom_toBottomOf="parent"
+                                />
+
+                        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        <com.jaygoo.widget.RangeSeekBar
+                            android:id="@+id/waterRange"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/dimen_8"
+                            app:rsb_mode="single"
+                            app:rsb_tick_mark_layout_gravity="bottom"
+                            app:rsb_tick_mark_text_margin="15dp"
+                            app:rsb_progress_color="@color/red_500"
+                            app:rsb_min_interval="50"
+                            app:rsb_thumb_drawable="@drawable/thumb_range"
+                            app:rsb_indicator_show_mode="alwaysShow"
+                            app:rsb_indicator_height="30dp"
+                            app:rsb_indicator_width="50dp"
+                            app:rsb_indicator_margin="5dp"
+                            app:rsb_indicator_background_color="@color/red_500"
+                            app:rsb_tick_mark_mode="number"
+                            app:rsb_tick_mark_text_array="@array/bmrRange"
+                            />
 
                     </LinearLayout>
 
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+            <Space
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                />
 
 
 
