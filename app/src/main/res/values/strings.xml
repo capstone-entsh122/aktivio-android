@@ -42,4 +42,11 @@
     <string name="let_s_start">Let\'s Start</string>
     <string name="see_exercise_plan">See Exercise Plan</string>
     <string name="onboardresult">Our <b>AI</b> had deciding and <b>planning</b> for your <b>best exercise</b> and <b>dietary</b>\nthat you need.</string>
+    <string name="today_s_meal">Today\'s Meal</string>
+    <string name="tanggal">Tanggal</string>
+    <string name="daily_nutrition">Daily Nutrition</string>
+    <string name="daily_nutrition_needs">Daily nutrition needs</string>
+    <string name="dietary_title">Instantly Uncover Food Calories!</string>
+    <string name="dietary_desc">Tap to Scan and Get Accurate Nutrition Information.</string>
+    <string name="dietary_fragment">Dietary Fragment</string>
 </resources>
