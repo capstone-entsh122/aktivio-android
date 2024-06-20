@@ -2,6 +2,7 @@ package com.bangkit.aktivio.modules.splash
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,7 @@ class SplashScreenActivity : AppCompatActivity() {
         ivLogo.animate().setDuration(1500).alpha(1f).withEndAction {
             val i = Intent(this, OnboardingActivity::class.java)
             val j = Intent(this, MainActivity::class.java)
+            Log.d("SplashScreenActivity", Firebase.user.toString())
             if(Firebase.user != null) {
                 startActivity(j)
             } else {

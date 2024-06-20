@@ -7,10 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.domain.model.MealModel
 
-data class Meal(val name: String, val calories: String, val imageResId: Int)
 
-class MealAdapter(private val meals: List<Meal>) :
+class MealAdapter(private val meals: List<MealModel>) :
     RecyclerView.Adapter<MealAdapter.MealViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder {

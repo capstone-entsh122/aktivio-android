@@ -30,7 +30,7 @@
     <string name="points">1576 Points</string>
     <string name="level">Level 16</string>
     <string name="btn_redeem">Redeem Your Points</string>
-    <string name="take_survey_again">Take survey again</string>
+    <string name="take_survey_again">Change Personalization</string>
     <string name="achievements">Achievements</string>
     <string name="settings">Settings</string>
     <string name="home">Home</string>
@@ -42,7 +42,7 @@
     <string name="let_s_start">Let\'s Start</string>
     <string name="see_exercise_plan">See Exercise Plan</string>
     <string name="onboardresult">Our <b>AI</b> had deciding and <b>planning</b> for your <b>best exercise</b> and <b>dietary</b>\nthat you need.</string>
-    <string name="today_s_meal">Today\'s Meal</string>
+    <string name="today_s_meal">Meal History</string>
     <string name="tanggal">Tanggal</string>
     <string name="daily_nutrition">Daily Nutrition</string>
     <string name="daily_nutrition_needs">Daily nutrition needs</string>

@@ -10,6 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
+        android:layout_marginTop="50dp"
+        app:titleTextAppearance="@style/ToolbarTitle"
         android:elevation="4dp"
         app:title="Daily Nutrition"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
@@ -33,7 +35,7 @@
                 android:layout_height="144dp"
                 android:layout_marginHorizontal="16dp"
                 android:text="@string/dietary_fragment"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="16dp">
                 <ImageView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
@@ -73,7 +75,7 @@
                 android:layout_marginHorizontal="16dp"
                 android:text="@string/dietary_fragment"
                 android:backgroundTint="@color/white"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="16dp">
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:padding="16dp"

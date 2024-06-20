@@ -1,5 +1,6 @@
 package com.bangkit.aktivio.modules.dietary
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Spannable
@@ -20,6 +21,8 @@ import android.text.style.StyleSpan
 import android.graphics.Typeface
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bangkit.aktivio.core.domain.model.MealModel
+import com.google.android.material.card.MaterialCardView
 
 class DietaryFragment : Fragment() {
 
@@ -48,6 +51,11 @@ class DietaryFragment : Fragment() {
         val pieChart = view.findViewById<PieChart>(R.id.pie_chart)
         val consumedCaloriesColor = ContextCompat.getColor(requireContext(), R.color.red500)
         val mealsTitle = view.findViewById<TextView>(R.id.tv_meal_title)
+        val btnScan : MaterialCardView = view.findViewById(R.id.btn_scan)
+
+        btnScan.setOnClickListener {
+            startActivity(Intent(requireContext(), CameraActivity::class.java))
+        }
 
         val spanMealsTitle = SpannableString(mealsTitle.text)
         spanMealsTitle.setSpan(
@@ -119,9 +127,9 @@ class DietaryFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         val meals = listOf(
-            Meal("Ketoprak", "824,3 kkal", R.drawable.meal_default),
-            Meal("Gudeg", "260 kkal", R.drawable.meal_default),
-            Meal("Coca Cola", "80 kkal", R.drawable.meal_default),
+            MealModel("Ketoprak", "824,3 kkal", R.drawable.meal_default),
+            MealModel("Gudeg", "260 kkal", R.drawable.meal_default),
+            MealModel("Coca Cola", "80 kkal", R.drawable.meal_default),
         )
 
         val adapter = MealAdapter(meals)

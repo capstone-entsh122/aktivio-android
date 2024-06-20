@@ -6,14 +6,56 @@ import com.bangkit.aktivio.core.domain.model.SurveyQuestion
 import com.bangkit.aktivio.core.types.QuestionType
 
 object SurveyData {
-    fun getSurveyData() : List<SurveyQuestion> {
+    fun getSurveyData(gender: String?) : List<SurveyQuestion> {
+        val healthOptions = mutableListOf(
+                OptionModel(
+                    id = 1,
+                    title = "Heart or Cardiovascular disease",
+                    value = "heart / cardiovascular disease",
+                ),
+                OptionModel(
+                    id = 2,
+                    title = "Hypertension",
+                    value = "hypertension",
+                ),
+                OptionModel(
+                    id = 3,
+                    title = "Physical injury",
+                    value = "physical injury",
+                ),
+                OptionModel(
+                    id = 4,
+                    title = "Difable",
+                    value = "difable",
+                ),
+                OptionModel(
+                    id = 6,
+                    title = "Asthma or Respiratory disease",
+                    value = "asthma / respiratory disease",
+                ),
+                OptionModel(
+                    id = 7,
+                    title = "I don’t have any disease history",
+                    value = "",
+                ),
+        )
+
+        if (gender == "female") {
+            healthOptions.add(OptionModel(
+                id = 5,
+                title = "Pregnant",
+                value = "pregnant",
+            ),)
+        }
+
+
         return listOf(
             SurveyQuestion(
                 id = 1,
                 field = "location",
                 type = QuestionType.SINGLE_BOX,
                 question = "Select your <red>location<red>",
-                description = "Please choose your location in map box",
+                description = "This data is used to provide you with the communities and events near you",
             ),
             SurveyQuestion(
                 id = 2,
@@ -57,7 +99,7 @@ object SurveyData {
                 field = "fitnessLevel",
                 type = QuestionType.TRIPLE_BOX,
                 question = "What is your <red>current fitness?<red>",
-                description = "Please choose the option below",
+                description = "Physical activity such are walking, running, lift object, etc",
                 options = listOf(
                     OptionModel(
                         id = 1,
@@ -69,14 +111,14 @@ object SurveyData {
                     OptionModel(
                         id = 2,
                         title = "Average Condition",
-                        description = "You’re doing exercise or physical activity but not consistently",
+                        description = "You’re doing exercise or physical activity 1-3 times a week",
                         value = "Average",
                         icon = R.drawable.ic_avg_condition
                     ),
                     OptionModel(
                         id = 3,
                         title = "Unfit Condition",
-                        description = "You’re rarely or maybe never doing exercise or physical activity",
+                        description = "You’re never doing exercise or physical activity",
                         value = "Unfit",
                         icon = R.drawable.ic_low_condition
                     ),
@@ -88,45 +130,14 @@ object SurveyData {
                 type = QuestionType.MULTI_CHECKBOX,
                 question = "What is your <red>health condition?<red>",
                 description = "You can choose more than 1",
-                options = listOf(
-                    OptionModel(
-                        id = 1,
-                        title = "Heart or Cardiovascular disease",
-                        value = "heart / cardiovascular disease",
-                    ),
-                    OptionModel(
-                        id = 2,
-                        title = "Hypertension",
-                        value = "hypertension",
-                    ),
-                    OptionModel(
-                        id = 3,
-                        title = "Physical injury",
-                        value = "physical injury",
-                    ),
-                    OptionModel(
-                        id = 4,
-                        title = "Difable",
-                        value = "difable",
-                    ),
-                    OptionModel(
-                        id = 5,
-                        title = "Pregnant",
-                        value = "pregnant",
-                    ),
-                    OptionModel(
-                        id = 6,
-                        title = "Asthma or Respiratory disease",
-                        value = "asthma / respiratory disease",
-                    ),
-                )
+                options = healthOptions
             ),
             SurveyQuestion(
                 id = 6,
                 field = "equipment",
                 type = QuestionType.TRIPLE_BOX,
                 question = "Select your <red>equipment<red>",
-                description = "Please choose your location in map box",
+                description = "Equipment is tools that you used in exercise such are bicycle, dumbbell, treadmill, etc",
                 options = listOf(
                     OptionModel(
                         id = 1,

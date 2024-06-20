@@ -21,7 +21,6 @@ import javax.inject.Inject
 @HiltViewModel
 class SurveyViewModel @Inject constructor(private val userRepository: UserRepository) : ViewModel() {
 
-
     private val _data = MutableLiveData<List<SurveyQuestion>>()
     val data: LiveData<List<SurveyQuestion>> = _data
     private val _idx = MutableLiveData<Int>()
@@ -36,7 +35,7 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
     val lastQuestion: LiveData<Boolean> = _lastQuestion
 
     init {
-        _data.value = SurveyData.getSurveyData()
+        _data.value = SurveyData.getSurveyData("female")
         _idx.value = 0
         _progress.value = (_idx.value!! + 1) * 100 / data.value!!.size
         _question.value = data.value?.get(_idx.value!!)
@@ -44,6 +43,9 @@ class SurveyViewModel @Inject constructor(private val userRepository: UserReposi
     }
 
     private fun update() {
+        if(_idx.value == 4) {
+            _data.value = SurveyData.getSurveyData(_user.value!!["gender"].toString())
+        }
         _question.value = data.value!![_idx.value!!]
         _progress.value = (_idx.value!! + 1) * 100 / data.value!!.size
         _lastQuestion.value = _idx.value == data.value!!.size - 1

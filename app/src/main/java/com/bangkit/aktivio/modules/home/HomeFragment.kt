@@ -1,11 +1,21 @@
 package com.bangkit.aktivio.modules.home
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.config.DummyArticles
+import com.bangkit.aktivio.core.data.local.adapter.ArticleAdapter
+import com.bangkit.aktivio.core.domain.model.ArticleModel
+import com.bangkit.aktivio.core.utils.Firebase
+import com.bangkit.aktivio.databinding.FragmentHomeBinding
+import com.bangkit.aktivio.databinding.FragmentProfileBinding
+import com.bangkit.aktivio.modules.auth.LoginActivity
+import com.bangkit.aktivio.modules.survey.SurveyActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +31,12 @@ class HomeFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    private var articles: ArrayList<ArticleModel> = arrayListOf()
+    private val adapter: ArticleAdapter by lazy {
+        ArticleAdapter(articles)
+    }
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,8 +50,37 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        adapter.addData(DummyArticles.getDummyArticles())
+        showRecyclerList()
+        with(binding){
+
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+
+    private fun showRecyclerList() {
+        with(binding){
+            val layoutManager = LinearLayoutManager(context)
+            rvArticles.layoutManager = layoutManager
+            rvArticles.adapter = adapter
+            adapter.setOnItemCLickCallback(object : ArticleAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: ArticleModel) {
+                    val intent = Intent(context, ArticleActivity::class.java)
+                    startActivity(intent)
+                }
+            })
+        }
     }
 
     companion object {

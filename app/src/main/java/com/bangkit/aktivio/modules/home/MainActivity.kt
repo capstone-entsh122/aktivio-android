@@ -9,11 +9,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.data.local.adapter.ArticleAdapter
 import com.bangkit.aktivio.core.data.remote.model.UserItem
+import com.bangkit.aktivio.core.domain.model.ArticleModel
 import com.bangkit.aktivio.core.domain.model.UserModel
 import com.bangkit.aktivio.core.utils.mapTo
+import com.bangkit.aktivio.databinding.ActivityMainBinding
 import com.bangkit.aktivio.modules.dietary.DietaryFragment
 import com.bangkit.aktivio.modules.event.EventFragment
 import com.bangkit.aktivio.modules.exercise.ExerciseFragment
@@ -24,45 +28,52 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private val viewModel: MainViewModel by viewModels()
+    private lateinit var binding: ActivityMainBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         enableEdgeToEdge()
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottom_navigation)
         loadFragment(HomeFragment())
-
-        bottomNavigationView.setOnItemSelectedListener   { menuItem ->
-            when (menuItem.itemId) {
-                R.id.home -> {
-                    val homeFragment = HomeFragment()
-                    loadFragment(homeFragment)
-                    return@setOnItemSelectedListener   true
+        with(binding) {
+            bottomNavigation.setOnItemSelectedListener   { menuItem ->
+                when (menuItem.itemId) {
+                    R.id.home -> {
+                        val homeFragment = HomeFragment()
+                        loadFragment(homeFragment)
+                        return@setOnItemSelectedListener   true
+                    }
+                    R.id.connect -> {
+                        val eventFragment = EventFragment()
+                        loadFragment(eventFragment)
+                        return@setOnItemSelectedListener   true
+                    }
+                    R.id.exercise -> {
+                        val exerciseFragment = ExerciseFragment()
+                        loadFragment(exerciseFragment)
+                        return@setOnItemSelectedListener   true
+                    }
+                    R.id.dietary -> {
+                        val dietaryFragment = DietaryFragment()
+                        loadFragment(dietaryFragment)
+                        return@setOnItemSelectedListener   true
+                    }
+                    R.id.profile -> {
+                        val profileFragment = ProfileFragment()
+                        loadFragment(profileFragment)
+                        return@setOnItemSelectedListener   true
+                    }
+                    else -> return@setOnItemSelectedListener   false
                 }
-                R.id.connect -> {
-                    val eventFragment = EventFragment()
-                    loadFragment(eventFragment)
-                    return@setOnItemSelectedListener   true
-                }
-                R.id.exercise -> {
-                    val exerciseFragment = ExerciseFragment()
-                    loadFragment(exerciseFragment)
-                    return@setOnItemSelectedListener   true
-                }
-                R.id.dietary -> {
-                    val dietaryFragment = DietaryFragment()
-                    loadFragment(dietaryFragment)
-                    return@setOnItemSelectedListener   true
-                }
-                R.id.profile -> {
-                    val profileFragment = ProfileFragment()
-                    loadFragment(profileFragment)
-                    return@setOnItemSelectedListener   true
-                }
-                else -> return@setOnItemSelectedListener   false
             }
         }
 
     }
+
+
+
+
 
     private fun loadFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction().apply {
