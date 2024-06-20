@@ -77,6 +77,9 @@ class HomeFragment : Fragment() {
             adapter.setOnItemCLickCallback(object : ArticleAdapter.OnItemClickCallback {
                 override fun onItemClicked(data: ArticleModel) {
                     val intent = Intent(context, ArticleActivity::class.java)
+                    intent.putExtras(Bundle().apply {
+                        putParcelable("article", data)
+                    })
                     startActivity(intent)
                 }
             })

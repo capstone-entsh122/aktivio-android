@@ -4,6 +4,7 @@ import android.content.Context
 import com.bangkit.aktivio.core.data.local.source.UserPreferencesRepository
 import com.bangkit.aktivio.core.data.remote.retrofit.ApiService
 import com.bangkit.aktivio.core.data.remote.source.AuthRepository
+import com.bangkit.aktivio.core.data.remote.source.DietaryRepository
 import com.bangkit.aktivio.core.data.remote.source.SportPlanRepository
 import com.bangkit.aktivio.core.data.remote.source.UserRepository
 import dagger.Module
@@ -33,6 +34,12 @@ object AppModule {
     @Provides
     fun provideSportPlanRepository(apiService: ApiService, userPreferencesRepository: UserPreferencesRepository): SportPlanRepository {
         return SportPlanRepository(apiService, userPreferencesRepository)
+    }
+
+    @Singleton
+    @Provides
+    fun provideDietaryRepository(apiService: ApiService, userPreferencesRepository: UserPreferencesRepository) : DietaryRepository {
+        return DietaryRepository(apiService, userPreferencesRepository)
     }
 
 
