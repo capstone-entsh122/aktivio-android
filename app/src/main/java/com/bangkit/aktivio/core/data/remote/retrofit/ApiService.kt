@@ -59,7 +59,7 @@ interface ApiService {
     /// DIEATARY MODULE
 
     @Multipart
-    @POST("food/calories")
+    @POST("classify")
     suspend fun predictFoodCalories(@Header("Authorization") token: String, @Part image: MultipartBody.Part) : DefaultResponse
 
     @GET("food/history")

@@ -5,30 +5,25 @@
     android:layout_height="match_parent"
     tools:context=".modules.dietary.DietaryFragment">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/dietary_toolbar"
+    <TextView
+        android:id="@+id/tvDaily"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
+        android:layout_height="wrap_content"
+        android:text="Daily Nutrition"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="50dp"
-        app:titleTextAppearance="@style/ToolbarTitle"
-        android:elevation="4dp"
-        app:title="Daily Nutrition"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
-        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        android:layout_alignParentTop="true"/>
+        style="@style/ToolbarTitle"/>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/dietary_toolbar"
+        android:layout_below="@id/tvDaily"
         android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/btn_scan"
                 android:layout_width="match_parent"
@@ -76,63 +71,273 @@
                 android:text="@string/dietary_fragment"
                 android:backgroundTint="@color/white"
                 android:layout_marginTop="16dp">
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:padding="16dp"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <LinearLayout
-                        android:id="@+id/linearLayout3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:orientation="vertical"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                    android:orientation="vertical"
+                    >
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:padding="16dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
 
                         <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-                            <TextView
-                                android:id="@+id/title"
+                            android:id="@+id/linearLayout3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="@string/daily_nutrition_needs"
-                                android:textColor="@color/text"
-                                android:textSize="16sp" />
+                                android:orientation="vertical">
+                                <TextView
+                                    android:id="@+id/title"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/daily_nutrition_needs"
+                                    android:textColor="@color/text"
+                                    android:textSize="16sp" />
+
+                                <TextView
+                                    android:id="@+id/calories_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="8dp"
+                                    android:text="@string/daily_nutrition"
+                                    android:textColor="@color/text"
+                                    android:textSize="20sp" />
+                            </LinearLayout>
 
                             <TextView
-                                android:id="@+id/calories_text"
+                                android:id="@+id/date_text"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginTop="8dp"
-                                android:text="@string/daily_nutrition"
+                                android:layout_marginTop="32dp"
+                                android:text="@string/tanggal"
                                 android:textColor="@color/text"
-                                android:textSize="20sp" />
+                                android:textSize="14sp" />
                         </LinearLayout>
 
-                        <TextView
-                            android:id="@+id/date_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="32dp"
-                            android:text="@string/tanggal"
-                            android:textColor="@color/text"
-                            android:textSize="14sp" />
+                        <com.github.mikephil.charting.charts.PieChart
+                            android:id="@+id/pie_chart"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="center"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dimen_8"
+                        android:gravity="center"
+                        >
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="90dp"
+                            android:layout_height="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/dimen_8">
+
+                                <TextView
+                                    android:id="@+id/tvKalori"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="120g"
+                                    style="@style/MainTextNutrition"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Kalori"
+                                    style="@style/LabelTextNutrition"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="90dp"
+                            android:layout_height="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/dimen_8">
+
+                                <TextView
+                                    android:id="@+id/tvProtein"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="120g"
+                                    style="@style/MainTextNutrition"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Protein"
+                                    style="@style/LabelTextNutrition"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="90dp"
+                            android:layout_height="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/dimen_8">
+
+                                <TextView
+                                    android:id="@+id/tvLemak"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="120g"
+                                    style="@style/MainTextNutrition"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Lemak"
+                                    style="@style/LabelTextNutrition"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
 
-                    <com.github.mikephil.charting.charts.PieChart
-                        android:id="@+id/pie_chart"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_gravity="center"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        android:layout_marginBottom="24dp"
+                        android:gravity="center"
+                        >
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="90dp"
+                            android:layout_height="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/dimen_8">
+
+                                <TextView
+                                    android:id="@+id/tvKarbo"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="120g"
+                                    style="@style/MainTextNutrition"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Karbo"
+                                    style="@style/LabelTextNutrition"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:layout_width="90dp"
+                            android:layout_height="100dp"
+                            app:cardBackgroundColor="@color/red_50"
+                            app:strokeColor="@color/transparent"
+                            android:layout_marginStart="@dimen/dimen_16"
+                            >
+
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:padding="@dimen/dimen_8">
+
+                                <TextView
+                                    android:id="@+id/tvSerat"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="120g"
+                                    style="@style/MainTextNutrition"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Serat"
+                                    style="@style/LabelTextNutrition"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
