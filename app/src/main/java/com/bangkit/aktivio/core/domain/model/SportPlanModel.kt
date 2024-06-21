@@ -11,5 +11,5 @@ data class SportPlanModel(
 
     val weeklyRecommendations: String? = null,
 
-    val plans: List<StepModel>? = null
+    val plans: List<PlanModel>? = null
 ) : Parcelable

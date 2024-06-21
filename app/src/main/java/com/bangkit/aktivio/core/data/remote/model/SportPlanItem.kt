@@ -13,5 +13,5 @@ data class SportPlanItem(
     val weeklyRecommendations: String? = null,
 
     @field:SerializedName("plans")
-    val plans: List<StepItem>? = null
+    val plans: List<PlanItem>? = null
 )

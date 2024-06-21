@@ -30,6 +30,12 @@
         tools:replace="android:appComponentFactory"
         tools:targetApi="31">
         <activity
+            android:name=".modules.ComingSoonActivity"
+            android:exported="false" />
+        <activity
+            android:name=".modules.profile.AchievementActivity"
+            android:exported="false" />
+        <activity
             android:name=".modules.exercise.FinishExerciseActivity"
             android:exported="false" />
         <activity

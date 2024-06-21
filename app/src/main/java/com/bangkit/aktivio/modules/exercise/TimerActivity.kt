@@ -40,7 +40,7 @@ class TimerActivity : AppCompatActivity() {
 
         with(binding) {
             llControl.visibility = View.GONE
-            circularCountDownView.initTimer(10)
+            circularCountDownView.initTimer(1200)
             circularCountDownView.setOnTickListener(object : HappyTimer.OnTickListener {
                 override fun onTick(completedSeconds: Int, remainingSeconds: Int) {
 

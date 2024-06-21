@@ -144,6 +144,9 @@ interface ApiService {
     @GET("sportplan/{planId}")
     suspend fun getSportPlan(@Header("Authorization") token: String, @Path("planId") planId: String) : DefaultResponse
 
+    @GET("plan")
+    suspend fun getPlans(@Header("Authorization") token: String) : DefaultResponse
+
     @POST("sportplan")
     suspend fun createSportPlan(@Header("Authorization") token: String, @Body planItem: PlanItem) : DefaultResponse
 

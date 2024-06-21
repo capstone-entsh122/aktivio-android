@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatDelegate
+import com.bangkit.aktivio.core.utils.TokenScheduler
 import dagger.hilt.android.HiltAndroidApp
 
 
@@ -25,5 +26,8 @@ class MyApplication: Application() {
             override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {}
             override fun onActivityDestroyed(activity: Activity) {}
         })
+
+//        val tokenScheduler = TokenScheduler(this)
+//        tokenScheduler.scheduleTokenRefresh()
     }
 }

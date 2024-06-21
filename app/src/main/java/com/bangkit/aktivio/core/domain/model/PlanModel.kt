@@ -5,10 +5,9 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class PlanModel(
-    val name: String?,
-    val description: String?,
+    val id: String?,
+    val recommendedDuration: Number?,
     val sportType: String?,
-    val difficultyLevel: String?,
-    val recommendationDuration: Int?,
+    val totalElapsedTime: Number?,
     val steps: List<StepModel>?,
 ) : Parcelable

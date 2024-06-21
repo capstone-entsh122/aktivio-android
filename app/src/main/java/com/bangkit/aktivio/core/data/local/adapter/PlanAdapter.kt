@@ -10,13 +10,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.domain.model.PlanModel
 
-class PlanAdapter(private val listArticle: ArrayList<PlanModel>) : RecyclerView.Adapter<PlanAdapter.ListViewHolder>() {
+class PlanAdapter(private val listPlan: ArrayList<PlanModel>) : RecyclerView.Adapter<PlanAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
 
     @SuppressLint("NotifyDataSetChanged")
     fun addData(items: List<PlanModel>){
-        listArticle.clear()
-        listArticle.addAll(items)
+        listPlan.clear()
+        listPlan.addAll(items)
         notifyDataSetChanged()
     }
 
@@ -30,17 +30,17 @@ class PlanAdapter(private val listArticle: ArrayList<PlanModel>) : RecyclerView.
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
-        val article = listArticle[position]
-
-        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listArticle[holder.absoluteAdapterPosition]) }
+        val plan = listPlan[position]
+        holder.title.text = plan.sportType
+        holder.desc.text = "${plan.recommendedDuration} minutes"
+        holder.itemView.setOnClickListener { onItemClickCallback.onItemClicked(listPlan[holder.absoluteAdapterPosition]) }
     }
 
     override fun getItemCount(): Int {
-        return listArticle.size
+        return listPlan.size
     }
 
     inner class ListViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var imageView : ImageView = itemView.findViewById(R.id.iVThumbnail)
         var title : TextView = itemView.findViewById(R.id.tvTitle)
         var desc : TextView = itemView.findViewById(R.id.tvDesc)
     }

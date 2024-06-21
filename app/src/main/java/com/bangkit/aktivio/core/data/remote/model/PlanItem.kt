@@ -3,20 +3,17 @@ package com.bangkit.aktivio.core.data.remote.model
 import com.google.gson.annotations.SerializedName
 
 data class PlanItem(
-    @field:SerializedName("name")
-    val name: String?,
-
-    @field:SerializedName("description")
-    val description: String?,
+    @field:SerializedName("id")
+    val id: String?,
 
     @field:SerializedName("sportType")
     val sportType: String?,
 
-    @field:SerializedName("difficultyLevel")
-    val difficultyLevel: String?,
-
     @field:SerializedName("recommendationDuration")
-    val recommendationDuration: Int?,
+    val recommendationDuration: Number?,
+
+    @field:SerializedName("totalElapsedTime")
+    val totalElapsedTime: Number?,
 
     @field:SerializedName("steps")
     val steps: List<StepItem>?,

@@ -9,11 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import com.bangkit.aktivio.R
 import androidx.fragment.app.viewModels
+import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.utils.Extensions.toast
 import com.bangkit.aktivio.core.utils.Firebase
 import com.bangkit.aktivio.databinding.FragmentProfileBinding
+import com.bangkit.aktivio.modules.ComingSoonActivity
 import com.bangkit.aktivio.modules.auth.LoginActivity
 import com.bangkit.aktivio.modules.survey.SurveyActivity
 import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +65,28 @@ class ProfileFragment : Fragment() {
             }
             btnSurvey.setOnClickListener {
                 startActivity(Intent(requireContext(), SurveyActivity::class.java))
+            }
+            btnSettings.setOnClickListener {
+                startActivity(Intent(requireContext(), ComingSoonActivity::class.java))
+            }
+            btnAchievement.setOnClickListener {
+                startActivity(Intent(requireContext(), ComingSoonActivity::class.java))
+            }
+            viewModels.getProfileData().observe(viewLifecycleOwner) {
+                when(it) {
+                    is Resource.Error -> {
+                        activity?.toast("Warning", it.message.toString(), MotionToastStyle.WARNING)
+                    }
+                    is Resource.Loading -> TODO()
+                    is Resource.Success -> {
+                        it.apply {
+                            username.text = data?.displayName
+                            email.text = data?.email
+                            points.text = "${data?.points} Points"
+                            level.text = "Level 1"
+                        }
+                    }
+                }
             }
         }
     }

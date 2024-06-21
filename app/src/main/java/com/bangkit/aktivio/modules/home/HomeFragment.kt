@@ -21,6 +21,7 @@ import com.bangkit.aktivio.modules.auth.LoginActivity
 import com.bangkit.aktivio.modules.profile.ProfileViewModel
 import com.bangkit.aktivio.modules.survey.SurveyActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.math.roundToInt
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +72,10 @@ class HomeFragment : Fragment() {
                     is Resource.Success -> {
                         val user = it.data
                         tvHello.text = "Hello, ${user?.displayName}"
+                        tvTask.text = user?.sportPlan?.sportsRecommendations?.first()
+                        tvDuration.text = user?.sportPlan?.timeRecommendations?.substring(0,2)
+                        tvCalories.text = user?.recommendedCaloriesNutritions?.kaloriHarian?.toDouble()?.roundToInt().toString()
+                        tvNutrition.text = user?.recommendedCaloriesNutritions?.proteinMin?.toDouble()?.roundToInt().toString()
                     }
                     is Resource.Error -> {
                         Log.e("MainActivity", it.message.toString())

@@ -304,14 +304,14 @@ object SurveyData {
                     OptionModel(
                         id = 1,
                         field = "weight",
-                        title = "Enter your weight",
+                        title = "Enter your weight (kg)",
                         hint = "Weight",
                         icon = R.drawable.ic_weight
                     ),
                     OptionModel(
                         id = 2,
                         field = "height",
-                        title = "Enter your height",
+                        title = "Enter your height (cm)",
                         hint = "Height",
                         icon = R.drawable.ic_height
                     ),

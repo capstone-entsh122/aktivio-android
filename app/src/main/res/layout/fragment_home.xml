@@ -67,6 +67,7 @@
 
 
                         <TextView
+                            android:id="@+id/tvTask"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="-4dp"
@@ -76,11 +77,12 @@
                             android:textSize="21dp" />
 
                         <TextView
+                            android:id="@+id/tvDesc"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="-8dp"
                             android:fontFamily="@font/poppins"
-                            android:text="Slow paced running for 30 minutes"
+                            android:text="A great step to you start this exercise steps"
                             android:textColor="@color/white"
                             android:textSize="10sp" />
 
@@ -140,7 +142,7 @@
                                     style="@style/TitleTextCardDashboard"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Total\nDuration" />
+                                    android:text="Exercise\nDuration" />
                             </LinearLayout>
 
                             <com.google.android.material.card.MaterialCardView
@@ -247,7 +249,7 @@
                                         android:layout_height="25dp"
                                         android:layout_gravity="center"
                                         android:gravity="center"
-                                        android:text="4"
+                                        android:text="3"
                                         android:textAlignment="center" />
 
                                     <TextView
@@ -307,7 +309,7 @@
                                     style="@style/TitleTextCardDashboard"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Calories\nBurned" />
+                                    android:text="Calories\nNeed" />
                             </LinearLayout>
 
                             <com.google.android.material.card.MaterialCardView

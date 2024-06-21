@@ -78,65 +78,78 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     >
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:padding="16dp"
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:text="Your Detail Nutrition Needs"
+                        android:layout_marginHorizontal="20dp"
+                        android:textColor="@color/text"
+                        android:fontFamily="@font/poppins_semibold"
+                        android:textSize="14sp"
+                        android:layout_marginTop="@dimen/dimen_16"
+                        />
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout3"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
 
-                            <LinearLayout
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:orientation="vertical">
-                                <TextView
-                                    android:id="@+id/title"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="@string/daily_nutrition_needs"
-                                    android:textColor="@color/text"
-                                    android:fontFamily="@font/poppins_semibold"
-                                    android:textSize="16sp" />
+<!--                    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:padding="16dp"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:orientation="horizontal">-->
 
-                                <TextView
-                                    android:id="@+id/calories_text"
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:layout_marginTop="8dp"
-                                    android:text="@string/daily_nutrition"
-                                    android:textColor="@color/text"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:textSize="20sp" />
-                            </LinearLayout>
+<!--                        <LinearLayout-->
+<!--                            android:id="@+id/linearLayout3"-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="match_parent"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:orientation="vertical"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintStart_toStartOf="parent"-->
+<!--                            app:layout_constraintTop_toTopOf="parent">-->
 
-                            <TextView
-                                android:id="@+id/date_text"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginTop="32dp"
-                                android:text="@string/tanggal"
-                                android:textColor="@color/text"
-                                android:textSize="14sp" />
-                        </LinearLayout>
+<!--                            <LinearLayout-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:orientation="vertical">-->
+<!--                                <TextView-->
+<!--                                    android:id="@+id/title"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:text="@string/daily_nutrition_needs"-->
+<!--                                    android:textColor="@color/text"-->
+<!--                                    android:fontFamily="@font/poppins_semibold"-->
+<!--                                    android:textSize="16sp" />-->
 
-                        <com.github.mikephil.charting.charts.PieChart
-                            android:id="@+id/pie_chart"
-                            android:layout_width="120dp"
-                            android:layout_height="120dp"
-                            android:layout_gravity="center"
-                            app:layout_constraintTop_toTopOf="parent"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--                                <TextView-->
+<!--                                    android:id="@+id/calories_text"-->
+<!--                                    android:layout_width="wrap_content"-->
+<!--                                    android:layout_height="wrap_content"-->
+<!--                                    android:layout_marginTop="8dp"-->
+<!--                                    android:text="@string/daily_nutrition"-->
+<!--                                    android:textColor="@color/text"-->
+<!--                                    android:fontFamily="@font/poppins_medium"-->
+<!--                                    android:textSize="16dp" />-->
+<!--                            </LinearLayout>-->
+
+<!--                            <TextView-->
+<!--                                android:id="@+id/date_text"-->
+<!--                                android:layout_width="wrap_content"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:layout_marginTop="32dp"-->
+<!--                                android:text="@string/tanggal"-->
+<!--                                android:textColor="@color/text"-->
+<!--                                android:textSize="14sp" />-->
+<!--                        </LinearLayout>-->
+
+<!--                        <com.github.mikephil.charting.charts.PieChart-->
+<!--                            android:id="@+id/pie_chart"-->
+<!--                            android:layout_width="120dp"-->
+<!--                            android:layout_height="120dp"-->
+<!--                            android:layout_gravity="center"-->
+<!--                            app:layout_constraintTop_toTopOf="parent"-->
+<!--                            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--                            app:layout_constraintEnd_toEndOf="parent" />-->
+<!--                    </androidx.constraintlayout.widget.ConstraintLayout>-->
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -171,7 +184,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Kalori"
+                                    android:text="Calories"
                                     style="@style/LabelTextNutrition"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -247,7 +260,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Lemak"
+                                    android:text="Fat"
                                     style="@style/LabelTextNutrition"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -293,7 +306,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Karbo"
+                                    android:text="Carbo"
                                     style="@style/LabelTextNutrition"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -318,7 +331,7 @@
                                 android:padding="@dimen/dimen_8">
 
                                 <TextView
-                                    android:id="@+id/tvSerat"
+                                    android:id="@+id/tvWater"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="120g"
@@ -331,7 +344,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:text="Serat"
+                                    android:text="Water"
                                     style="@style/LabelTextNutrition"
                                     app:layout_constraintStart_toStartOf="parent"
                                     app:layout_constraintBottom_toBottomOf="parent"
@@ -344,24 +357,24 @@
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
-            <TextView
-                android:id="@+id/tv_meal_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/today_s_meal"
-                android:textStyle="bold"
-                android:textSize="20dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="16dp"
-                android:paddingHorizontal="16dp"
-                android:textColor="@color/text"/>
+<!--            <TextView-->
+<!--                android:id="@+id/tv_meal_title"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:text="@string/today_s_meal"-->
+<!--                android:textStyle="bold"-->
+<!--                android:textSize="20dp"-->
+<!--                android:layout_marginTop="32dp"-->
+<!--                android:layout_marginBottom="16dp"-->
+<!--                android:paddingHorizontal="16dp"-->
+<!--                android:textColor="@color/text"/>-->
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_meal_list"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false"
-                android:paddingHorizontal="16dp"/>
+<!--            <androidx.recyclerview.widget.RecyclerView-->
+<!--                android:id="@+id/rv_meal_list"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:nestedScrollingEnabled="false"-->
+<!--                android:paddingHorizontal="16dp"/>-->
         </LinearLayout>
     </ScrollView>
 

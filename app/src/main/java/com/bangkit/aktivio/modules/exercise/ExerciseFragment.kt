@@ -17,13 +17,24 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.data.Resource
+import com.bangkit.aktivio.core.data.local.adapter.ArticleAdapter
 import com.bangkit.aktivio.core.data.local.adapter.PlanAdapter
+import com.bangkit.aktivio.core.domain.model.ArticleModel
 import com.bangkit.aktivio.core.domain.model.PlanModel
+import com.bangkit.aktivio.core.domain.model.StepModel
+import com.bangkit.aktivio.core.utils.Extensions.toast
+import com.bangkit.aktivio.databinding.FragmentExerciseBinding
+import com.bangkit.aktivio.databinding.FragmentProfileBinding
+import com.bangkit.aktivio.modules.home.ArticleActivity
 import com.google.android.material.card.MaterialCardView
+import dagger.hilt.android.AndroidEntryPoint
+import www.sanju.motiontoast.MotionToastStyle
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
+@AndroidEntryPoint
 class ExerciseFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var planList: ArrayList<PlanModel> = arrayListOf()
@@ -31,31 +42,82 @@ class ExerciseFragment : Fragment() {
         PlanAdapter(planList)
     }
     private val viewModel: ExerciseViewModel by viewModels()
+    private var _binding: FragmentExerciseBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_exercise, container, false)
-        val button = view.findViewById<MaterialCardView>(R.id.quote)
-        button.setOnClickListener {
-            startActivity(Intent(requireContext(), TimerActivity::class.java   ))
+        _binding = FragmentExerciseBinding.inflate(inflater, container, false)
+        setupDynamicDates()
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initData()
+        showRecyclerList()
+    }
+
+    private fun initData() {
+        with(binding) {
+            quote.setOnClickListener {
+                startActivity(Intent(activity, TimerActivity::class.java))
+            }
+            viewModel.getSportPlan().observe(viewLifecycleOwner) {
+                when(it) {
+                    is Resource.Error -> {
+                        activity?.toast("Error", it.message!!, MotionToastStyle.ERROR)
+                    }
+                    is Resource.Loading -> TODO()
+                    is Resource.Success -> {
+                        tvSportType.text = "Task Exercise List"
+                        val listPlanModel =  it.data?.plans?.map {
+                            PlanModel(
+                                id = it.id,
+                                recommendedDuration = it.recommendationDuration,
+                                sportType = it.sportType,
+                                totalElapsedTime = it.totalElapsedTime,
+                                steps = it.steps?.map { step ->
+                                    StepModel(
+                                        order = step.order,
+                                        instruction = step.instruction,
+                                        duration = step.duration,
+                                        elapsedTime = step.elapsedTime
+                                    )
+                                }
+
+                            )
+                        }
+                        Log.d("ExerciseFragment", listPlanModel.toString())
+                        adapter.addData(listPlanModel!!)
+                        showRecyclerList()
+                    }
+                }
+            }
         }
-        setupRecyclerView(view)
-        setupDynamicDates(view)
-
-        return view
     }
 
-    private fun setupRecyclerView(view: View) {
-//        recyclerView = view.findViewById(R.id.recycler_view)
-//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-//        adapter = PlanAdapter(emptyList())
-//        recyclerView.adapter = adapter
+    private fun showRecyclerList() {
+        with(binding){
+            val layoutManager = LinearLayoutManager(context)
+            recyclerView.layoutManager = layoutManager
+            recyclerView.adapter = adapter
+            adapter.setOnItemCLickCallback(object : PlanAdapter.OnItemClickCallback {
+                override fun onItemClicked(data: PlanModel) {
+                    val intent = Intent(context, ArticleActivity::class.java)
+                    intent.putExtras(Bundle().apply {
+                        putParcelable("article", data)
+                    })
+                    startActivity(intent)
+                }
+            })
+        }
     }
 
-    private fun setupDynamicDates(view: View) {
-        val linearLayoutDates = view.findViewById<LinearLayout>(R.id.linear_layout_dates)
+    private fun setupDynamicDates() {
+        val linearLayoutDates = binding.linearLayoutDates
         val dateFormat = SimpleDateFormat("dd", Locale.getDefault())
         val monthFormat = SimpleDateFormat("MMMM", Locale.getDefault())
         val calendar = Calendar.getInstance()
