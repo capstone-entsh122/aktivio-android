@@ -34,8 +34,26 @@ data class UserItem (
     val communities: List<String>? = null,
 
     @field:SerializedName("points")
-    val points: Int? = null,
+    val points: Number? = null,
 
     @field:SerializedName("token")
-    val token: String? = null
+    val token: String? = null,
+
+    @field:SerializedName("joinedCommunities")
+    val joinedCommunities: List<String>? = null,
+
+    @field:SerializedName("dailyCalories")
+    val dailyCalories: Number? = null,
+
+    @field:SerializedName("createdAt")
+    val createdAt: CreatedAt? = null,
+
+    @field:SerializedName("updatedAt")
+    val updatedAt: UpdatedAt? = null,
+
+    @field:SerializedName("recommendedCaloriesNutritions")
+    val recommendedCaloriesNutritions: NutritionItem? = null,
+
+    @field:SerializedName("sportPlan")
+    val sportPlan: SportPlanItem? = null
 )

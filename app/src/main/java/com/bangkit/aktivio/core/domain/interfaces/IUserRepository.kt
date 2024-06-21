@@ -18,7 +18,7 @@ interface IUserRepository {
 
     suspend fun updateUserPreferences(surveyItem: SurveyItem): Flow<Resource<RecommendationItem>>
 
-    suspend fun getProfile(): Flow<Resource<UserModel>>
+    suspend fun getProfile(): Flow<Resource<UserItem>>
 
     suspend fun updateProfile(userItem: UserItem): Flow<Resource<String>>
 

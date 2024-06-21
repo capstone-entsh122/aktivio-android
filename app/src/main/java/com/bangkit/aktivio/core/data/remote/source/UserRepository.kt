@@ -62,8 +62,38 @@ class UserRepository(private val apiService: ApiService, private val userPrefere
         return BaseRequest.send(apiService::updateUserPreferences, surveyItem, token)
     }
 
-    override suspend fun getProfile(): Flow<Resource<UserModel>> {
-        return BaseRequest.single(apiService::getProfile, token)
+    override suspend fun getProfile(): Flow<Resource<UserItem>> {
+        return flow {
+            try {
+                val response = apiService.getProfile(token)
+                if (response.error == null) {
+                    val data = response.data
+                    if (data != null) {
+                        val userItem = UserItem(
+                            joinedCommunities = data["joinedCommunities"] as List<String>,
+                            displayName = data["displayName"] as String,
+                            dailyCalories = data["dailyCalories"] as Number,
+                            email = data["email"] as String,
+                            points = data["points"] as Number,
+                            createdAt = (data["createdAt"] as Map<String,Any>).toDataClass(),
+                            updatedAt = (data["updatedAt"] as Map<String,Any>).toDataClass(),
+                            recommendedCaloriesNutritions = (data["recommendedCaloriesNutritions"] as Map<String,Any>).toDataClass(),
+                            preferences = (data["preferences"] as Map<String,Any>).toDataClass(),
+                            sportPlan = (data["sportPlan"] as Map<String,Any>).toDataClass(),
+//                            location = (data["location"] as Map<String, Any>).toDataClass()
+                        )
+                        emit(Resource.Success(userItem))
+                    } else {
+                        emit(Resource.Error("Null Data"))
+                    }
+                } else {
+                    emit(Resource.Error(response.message ?: "Error"))
+                }
+            } catch (e: Exception) {
+                Log.e("BaseRequest", e.toString())
+                emit(Resource.Error(e.message.toString()))
+            }
+        }
     }
 
     override suspend fun updateProfile(userItem: UserItem): Flow<Resource<String>> {

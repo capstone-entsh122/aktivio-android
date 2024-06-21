@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class LocationItem(
     @field:SerializedName("latitude")
-    val latitude: Double,
+    val latitude: Number,
     @field:SerializedName("longitude")
-    val longitude: Double
+    val longitude: Number
 )

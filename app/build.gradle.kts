@@ -58,6 +58,7 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+    implementation("com.github.happysingh23828:HappyTimer:1.0.1")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-guava:1.6.0")
     implementation("androidx.camera:camera-camera2:1.3.0-alpha06")
     implementation("androidx.camera:camera-lifecycle:1.3.0-alpha06")

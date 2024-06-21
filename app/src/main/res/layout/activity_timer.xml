@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".modules.exercise.TimerActivity"
+    android:background="@color/white"
+    >
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:title="Cardio"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:titleTextAppearance="@style/ToolbarTitle"
+        />
+
+    <com.androchef.happytimer.countdowntimer.CircularCountDownView
+        android:id="@+id/circularCountDownView"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        app:stroke_foreground_color="@color/red_500"
+        app:stroke_background_color="@color/border"
+        app:stroke_background_thickness="31dp"
+        app:stroke_foreground_thickness="40dp"
+        app:timer_text_color="@color/red_500"
+        app:timer_text_shown="true"
+        app:timer_text_isBold="true"
+        app:timer_text_format="HOUR_MINUTE_SECOND"
+        app:timer_text_size="42dp"
+        app:timer_type="COUNT_DOWN"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar"
+        android:layout_marginTop="100dp"
+        />
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginBottom="30dp"
+        >
+
+        <Button
+            android:id="@+id/btnStart"
+            style="@style/ButtonTextLight"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bg_button_primary"
+            android:paddingVertical="12dp"
+            android:text="Start"
+            app:icon="@drawable/round_arrow_forward_24"
+            app:iconGravity="textStart"
+            app:iconPadding="8dp"
+            app:iconSize="20dp" />
+
+        <LinearLayout
+            android:id="@+id/llControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnStop"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                android:layout_marginEnd="16dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="10dp"
+                app:strokeColor="@color/border"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/round_stop_24"
+                        app:tint="@color/text"
+                        />
+
+                    <TextView
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="Stop"
+                        style="@style/ButtonTextDark"
+                        />
+
+                </LinearLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/btnPlayPause"
+                android:layout_width="150dp"
+                android:layout_height="60dp"
+                android:paddingVertical="12dp"
+                android:paddingHorizontal="20dp"
+                app:cardBackgroundColor="@color/red_500"
+                app:cardCornerRadius="10dp"
+                app:strokeColor="@color/transparent"
+                >
+
+                <LinearLayout
+                    android:layout_gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivPlayPause"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/round_pause_24"
+                        app:tint="@color/white"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvPlayPause"
+                        android:layout_marginStart="8dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:text="Pause"
+                        style="@style/ButtonTextLight"
+                        />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

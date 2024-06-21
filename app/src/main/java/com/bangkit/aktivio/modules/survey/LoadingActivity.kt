@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.bangkit.aktivio.R
 import com.bangkit.aktivio.core.domain.model.RecommendationModel
+import com.bangkit.aktivio.core.utils.Extensions.applyRedColorToText
 import com.bangkit.aktivio.databinding.ActivityLoadingBinding
 import com.bangkit.aktivio.modules.result.OnboardResultActivity
 import com.bangkit.aktivio.modules.result.PlanResultActivity
@@ -35,6 +36,7 @@ class LoadingActivity : AppCompatActivity() {
 
         // loading for 3 second and move activity
         with(binding){
+            tvTitle.text = "Processing\n<red>Your Data<red>".applyRedColorToText(this@LoadingActivity)
             Glide.with(this@LoadingActivity)
                 .asGif()
                 .load(R.drawable.loading)

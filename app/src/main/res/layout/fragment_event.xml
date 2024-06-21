@@ -5,11 +5,84 @@
     android:layout_height="match_parent"
     tools:context=".modules.exercise.ExerciseFragment">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hallo Event Fragment!"
-        android:layout_gravity="center"
-        />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                >
+
+                <ImageView
+                    android:id="@+id/ivThumbnail"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/img_placeholder"
+                    android:scaleType="centerCrop"
+                    />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:src="@drawable/img_overlay"
+                    android:scaleType="centerCrop"
+                    />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical"
+                    >
+
+                    <Space
+                        android:layout_width="match_parent"
+                        android:layout_height="100dp"/>
+
+                    <TextView
+                        android:id="@+id/tvTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:text="Judul sebuah article"
+                        android:layout_marginHorizontal="16dp"
+                        style="@style/ArticleDetailTitle"
+                        />
+
+                    <TextView
+                        android:id="@+id/tvAuthorDate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textAlignment="textStart"
+                        android:text="Author: Admin Aktivio"
+                        style="@style/ArticleDetailDesc"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginBottom="@dimen/dimen_16"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/auth_container"
+                        android:orientation="vertical"
+                        android:padding="32dp">
+
+
+
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+        </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

@@ -4,29 +4,29 @@ import com.google.gson.annotations.SerializedName
 
 data class NutritionItem(
     @field:SerializedName("bmr")
-    val bmr: Double? = null,
+    val bmr: Number? = null,
 
     @field:SerializedName("kaloriHarian")
-    val kaloriHarian: Double? = null,
+    val kaloriHarian: Number? = null,
 
     @field:SerializedName("proteinMin")
-    val proteinMin: Double? = null,
+    val proteinMin: Number? = null,
 
     @field:SerializedName("proteinMax")
-    val proteinMax: Double? = null,
+    val proteinMax: Number? = null,
 
     @field:SerializedName("lemakMin")
-    val lemakMin: Double? = null,
+    val lemakMin: Number? = null,
 
     @field:SerializedName("lemakMax")
-    val lemakMax: Double? = null,
+    val lemakMax: Number? = null,
 
     @field:SerializedName("karbohidratMin")
-    val karbohidratMin: Double? = null,
+    val karbohidratMin: Number? = null,
 
     @field:SerializedName("karbohidratMax")
-    val karbohidratMax: Double? = null,
+    val karbohidratMax: Number? = null,
 
     @field:SerializedName("air")
-    val air: Double? = null
+    val air: Number? = null
 )

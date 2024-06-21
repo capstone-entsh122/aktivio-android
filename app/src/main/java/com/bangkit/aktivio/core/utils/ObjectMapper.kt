@@ -2,8 +2,12 @@ package com.bangkit.aktivio.core.utils
 
 
 import kotlin.reflect.KClass
+import kotlin.reflect.full.allSuperclasses
+import kotlin.reflect.full.createType
 import kotlin.reflect.full.declaredMemberProperties
 import kotlin.reflect.full.primaryConstructor
+import kotlin.reflect.full.isSubclassOf
+import kotlin.reflect.full.isSubtypeOf
 
 /// Part of RsAndro (RsKit Families) : Mobile Development Tools
 /// BaseRequest Utility by Resma Adi Nugroho : @reezcode
@@ -76,3 +80,36 @@ fun convertValue(value: Any, targetType: KClass<*>): Any {
     }
 }
 
+//inline fun <reified T : Any> Map<String, Any?>.toDataClassNested(): T {
+//    return toDataClass(T::class)
+//}
+//
+//fun <T : Any> Map<String, Any?>.toDataClass(clazz: KClass<T>): T {
+//    val constructor = clazz.primaryConstructor
+//        ?: throw IllegalArgumentException("No primary constructor found for ${clazz}")
+//
+//    val args = constructor.parameters.associateWith { param ->
+//        val value = this[param.name]
+//        val type = param.type
+//
+//        when {
+//            value == null -> null
+//            type.isSubtypeOf(Map::class.createType()) -> {
+//                val nestedClazz = type.arguments[1].type?.classifier as? KClass<*>
+//                    ?: throw IllegalArgumentException("Unable to determine nested class for parameter ${param.name}")
+//                (value as Map<String, Any?>).toDataClass(nestedClazz)
+//            }
+//            type.isSubclassOf(Any::class) -> {
+//                val nestedClazz = type.classifier as? KClass<*>
+//                nestedClazz?.let { (value as? Map<String, Any?>)?.toDataClass(it) } ?: value
+//            }
+//            else -> value
+//        }
+//    }
+//
+//    return constructor.callBy(args)
+//}
+//
+//fun <T : Any> KClass<T>.isSubtypeOf(other: KClass<*>): Boolean {
+//    return this == other || this.allSuperclasses.contains(other)
+//}

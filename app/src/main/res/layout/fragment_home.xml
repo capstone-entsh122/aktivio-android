@@ -28,10 +28,11 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
+                    android:id="@+id/tvHello"
                     style="@style/TitleText"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Hello, Resma" />
+                    android:text="Hello" />
 
                 <TextView
                     style="@style/TextDurationCard"

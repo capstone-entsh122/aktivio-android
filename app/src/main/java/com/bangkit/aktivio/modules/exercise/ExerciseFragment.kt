@@ -1,5 +1,6 @@
 package com.bangkit.aktivio.modules.exercise
 
+import android.content.Intent
 import android.graphics.Typeface
 import android.os.Bundle
 import android.util.Log
@@ -16,15 +17,19 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bangkit.aktivio.R
+import com.bangkit.aktivio.core.data.local.adapter.PlanAdapter
+import com.bangkit.aktivio.core.domain.model.PlanModel
+import com.google.android.material.card.MaterialCardView
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.collections.ArrayList
 
 class ExerciseFragment : Fragment() {
-
-    private val TAG = "ExerciseFragment"
-
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter: PlanAdapter
+    private var planList: ArrayList<PlanModel> = arrayListOf()
+    private val adapter: PlanAdapter by lazy {
+        PlanAdapter(planList)
+    }
     private val viewModel: ExerciseViewModel by viewModels()
 
     override fun onCreateView(
@@ -32,17 +37,21 @@ class ExerciseFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_exercise, container, false)
+        val button = view.findViewById<MaterialCardView>(R.id.quote)
+        button.setOnClickListener {
+            startActivity(Intent(requireContext(), TimerActivity::class.java   ))
+        }
         setupRecyclerView(view)
         setupDynamicDates(view)
-        observeViewModel()
+
         return view
     }
 
     private fun setupRecyclerView(view: View) {
-        recyclerView = view.findViewById(R.id.recycler_view)
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        adapter = PlanAdapter(emptyList())
-        recyclerView.adapter = adapter
+//        recyclerView = view.findViewById(R.id.recycler_view)
+//        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+//        adapter = PlanAdapter(emptyList())
+//        recyclerView.adapter = adapter
     }
 
     private fun setupDynamicDates(view: View) {
@@ -57,6 +66,8 @@ class ExerciseFragment : Fragment() {
         val screenPadding = resources.getDimensionPixelSize(R.dimen.screen_padding)
         val screenWidth = resources.displayMetrics.widthPixels - (2 * screenPadding)
         val dateViewWidth = screenWidth / daysToShow - 8
+        // select today date
+//        selectDate(linearLayoutDates.getChildAt(2) as LinearLayout, calendar.time)
 
         for (i in 0 until daysToShow) {
             val isSelected = calendar.time == Calendar.getInstance().time
@@ -135,14 +146,7 @@ class ExerciseFragment : Fragment() {
         selectedDayTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red500))
         selectedMonthTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.red500))
 
-        viewModel.fetchActivitiesForDate(selectedDate)
-        Log.d(TAG, "Selected date: $selectedDate")
     }
 
-    private fun observeViewModel() {
-        viewModel.activities.observe(viewLifecycleOwner, Observer { activities ->
-            adapter.updateActivities(activities)
-            Log.d(TAG, "Observed activities change: $activities")
-        })
-    }
+
 }
